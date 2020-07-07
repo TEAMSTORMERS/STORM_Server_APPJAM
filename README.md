@@ -10,5 +10,8 @@
 <br> 참여 개발자 : 장세영, 조충범
 <br> [📄API 명세서](https://github.com/TEAMSTORMERS/STORM_Server/wiki)
 
+<br>
+<br>
+
 ### ERD
 ![StormD](https://user-images.githubusercontent.com/55133871/86811851-54a7fe80-c0b9-11ea-9a37-1e315e361649.PNG)
