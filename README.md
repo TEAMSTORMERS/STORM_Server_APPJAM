@@ -1,14 +1,17 @@
 # ⚡️🌪STORM SERVER🌪⚡️
 
->#### 
-<br> Wiki는 Wiki 탭에서 확인할 수 있습니다.
-<br><br>참여 개발자 : 장세영, 조충범
+![서비스소개](https://user-images.githubusercontent.com/55133871/86744023-47b4ec00-c074-11ea-947a-4b5675cb6c9c.png)
+<br><br><b> 실시간 브레인스토밍 협업 플랫폼 STORM</b>
+> 참여 개발자 : 장세영, 조충범
+<br> 개발 기간 : 2020-06-29 ~ 2020-07-17
+<br> [📄 API 명세서](https://github.com/TEAMSTORMERS/STORM_Server/wiki)
 
-#### 
-#### API 진행 상황
-|Stage|Mission|Done|
-|:--:|:--------------:|:--:|
-|1|ERD 제작||
-|2|API Wiki 작성||
-|3|기능 구현(17개)||
-|4|서버 배포||
+## Service Architecture
+
+## ERD
+
+## Dependencies
+
+## Main Function
+
+## Collaborator
