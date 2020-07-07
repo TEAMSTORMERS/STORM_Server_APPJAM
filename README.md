@@ -5,6 +5,7 @@
 > 참여 개발자 : 장세영, 조충범
 <br> 개발 기간 : 2020-06-29 ~ 2020-07-17
 <br> [📄 API 명세서](https://github.com/TEAMSTORMERS/STORM_Server/wiki)
+<br>
 
 ## ERD
 ![StormD](https://user-images.githubusercontent.com/55133871/86754373-ccefcf00-c07b-11ea-9493-0883ef898056.PNG)
