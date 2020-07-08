@@ -30,6 +30,9 @@ module.exports = {
     EDITED_POST: "게시글 수정 성공",
     NO_POST: "게시글 없음",
 
+    UNSUPPORTED_TYPE: "일단",
+    USERIMG_UPLOAD_SUCCESS : "",
+
     //DB
     DB_ERROR: "DB 오류"
 };
