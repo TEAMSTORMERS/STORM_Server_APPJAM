@@ -29,13 +29,86 @@ module.exports = {
         }
         const project_date = year+"."+month+"."+day;
 
+        //랜덤 코드가 현재 사용중인 코드와 겹치지는 않는지 확인하는 과정 필요함
+        //프로젝트 종료 후 랜덤 코드 삭제하는 방법은 어때?
+
         //예외처리2 : project_idx가 제대로 생성되었는지 확인
-        const projectIdx = await ProjectDao.createProject(project_name, project_comment, project_code, project_date);
+        const result = await ProjectDao.createProject(project_name, project_comment, project_code, project_date);
+        const projectIdx = result.insertId;
         if(projectIdx === -1) {
           return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }
-      
-        //3. 가입성공
-        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_PROJECT_SUCCESS));
+
+        //프로젝트가 잘 생성 되었을 경우 아래에 host 정보 등록
+        
+        //project_participant table에 user 정보 추가
+        const project_participant_idx = await ProjectDao.memberEnterProject(projectIdx, user_idx);
+        if(project_participant_idx === -1) {
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        
+        //프로젝트 생성자이기 때문에 project_participant_host table에 user 정보 추가
+        const project_participant_host_idx = await ProjectDao.hostEnterProject(project_participant_idx, user_idx);
+        if(project_participant_host_idx === -1) {
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        //프로젝트 생성 성공 - project_code, project_idx 출력
+        res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.CREATED_PROJECT_SUCCESS, {
+            "project_code" : project_code,
+            "project_idx" : projectIdx
+        }));
+    },
+
+    memberEnterProject : async (req, res) => {
+        const {user_idx, project_code} = req.body;
+
+        //예외처리1 : user_idx나 project_code가 null일 경우
+        if(!user_idx || !project_code){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+
+        //예외처리2 : project_idx를 제대로 받아왔는지 확인
+        const result = await ProjectDao.checkProjectIdx(project_code);
+        const project_idx = result[0].project_idx;
+        if(project_idx === -1) {
+          return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        //예외처리3 : project가 진행중일 경우 참여할 수 없음
+        const projectStatus = await ProjectDao.checkProjectStatus(project_idx);
+        const project_status = projectStatus[0].project_status;
+        if(project_status == 1){
+            return res.status(statusCode.CANNOT_JOIN).send(util.fail(statusCode.CANNOT_JOIN, resMessage.JOIN_PROJECT_FAIL));
+        }
+
+        //예외처리4 : projectParticipantIdx가 제대로 존재하는지 확인
+        const projectParticipantIdx = await ProjectDao.memberEnterProject(project_idx, user_idx);
+        if(projectParticipantIdx === -1) {
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        //프로젝트 참여 성공
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS));
+    },
+
+    //작업중
+    getProjectInfo : async (req, res) => {
+        const project_idx = req.params.user_idx;
+    },
+
+    showAllProject : async (req, res) => {
+        const user_idx = req.params.user_idx;
+
+        var result = await ProjectDao.showAllProject(user_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, {
+            "project_idx": project_idx,
+            "project_name": project_name,
+            "project_card" : result
+        }));
     }
 }

@@ -26,6 +26,11 @@ module.exports = {
     //프로젝트
     CREATED_PROJECT_SUCCESS: "프로젝트 생성 성공",
     CREATED_PROJECT_FAIL : "프로젝트 생성 실패",
+    CANNOT_JOIN : "이미 프로젝트가 진행중입니다.",
+    JOIN_PROJECT_SUCCESS: "프로젝트 참여 성공",
+    JOIN_PROJECT_FAIL : "프로젝트 참여 실패",
+    SHOW_PROJECT_LIST_SUCCESS : "참여한 프로젝트의 리스트 조회 성공",
+    SHOW_PROJECT_LIST_FAIL : "참여한 프로젝트의 리스트 조회 실패",
 
     UNSUPPORTED_TYPE: "일단",
     USERIMG_UPLOAD_SUCCESS : "",
