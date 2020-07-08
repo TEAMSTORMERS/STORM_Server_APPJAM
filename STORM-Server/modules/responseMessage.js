@@ -23,12 +23,9 @@ module.exports = {
     // 프로필 조회
     READ_PROFILE_SUCCESS: "프로필 조회 성공",
     
-    //블로그
-    CREATED_POST: "게시글 생성 성공",
-    DELETEED_POST: "게시글 삭제 성공",
-    READ_POST_SUCCESS: "게시글 조회 성공",
-    EDITED_POST: "게시글 수정 성공",
-    NO_POST: "게시글 없음",
+    //프로젝트
+    CREATED_PROJECT_SUCCESS: "프로젝트 생성 성공",
+    CREATED_PROJECT_FAIL : "프로젝트 생성 실패",
 
     UNSUPPORTED_TYPE: "일단",
     USERIMG_UPLOAD_SUCCESS : "",
