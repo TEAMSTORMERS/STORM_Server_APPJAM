@@ -1,7 +1,7 @@
 const util = require('../modules/util');
 const statusCode = require('../modules/statusCode');
 const resMessage = require('../modules/responseMessage');
-const UserModel = require('../dao/user');
+const UserDao = require('../dao/user');
 
 module.exports = {
     signup : async (req, res) => {
@@ -30,7 +30,7 @@ module.exports = {
         */
       
         //2. 새로운 User를 등록한다.
-        const userIdx = await UserModel.signup(user_name, user_token_kakao, user_token_google, user_img);
+        const userIdx = await UserDao.signup(user_name, user_token_kakao, user_token_google, user_img);
         if(userIdx === -1) {
           return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }
