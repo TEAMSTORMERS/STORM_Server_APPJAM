@@ -1,7 +1,7 @@
 const pool = require('../modules/pool');
 const userTable = 'user';
 
-const user = {
+module.exports = {
     signup: async (user_name, user_token_kakao, user_token_google, user_img) => {
         const fields = 'user_name, user_token_kakao, user_token_google, user_img';
         const questions = `?, ?, ?, ?`;  // 입력한 user_name, user_token_kakao, user_token_google, user_img 값들
@@ -21,5 +21,3 @@ const user = {
         }
     }
 }
-
-module.exports = user;
