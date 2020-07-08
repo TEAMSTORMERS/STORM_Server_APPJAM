@@ -12,7 +12,7 @@ module.exports = {
             //const insertId = result.insertId;
             return result;
         } catch (err) {
-            console.log('newProject ERROR : ', err);
+            console.log('createProject ERROR : ', err);
             throw err;
         }
     },
@@ -72,9 +72,20 @@ module.exports = {
         }
     },
 
+    getProjectInfo : async (project_idx) => {
+        const query = `SELECT project_idx, project_name, project_comment, project_code FROM project WHERE project_idx = "${project_idx}"`;
+        try{
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch(err) {
+            console.log('getProjectInfo ERROR : ', err);
+            throw err;
+        }
+    },
+
     //나중에하기
-    getProjectList : async (user_idx) => {
-        const query = `SELECT 정하세요`;
+    showAllProject : async (user_idx) => {
+        const query = `SELECT `;
         try {
             const result = await pool.queryParamArr(query, values);
             const insertId = result.insertId;

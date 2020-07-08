@@ -5,5 +5,6 @@ const projectController = require('../controller/projectController');
 
 router.post('/', projectController.createProject);
 router.post('/enter', projectController.memberEnterProject);
+router.get('/:project_idx', projectController.getProjectInfo);
 
 module.exports = router;

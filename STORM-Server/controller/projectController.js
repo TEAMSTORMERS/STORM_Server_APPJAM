@@ -92,12 +92,20 @@ module.exports = {
         }
 
         //프로젝트 참여 성공
-        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS));
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS, {
+            "project_idx" : project_idx
+        }));
     },
 
     //작업중
     getProjectInfo : async (req, res) => {
-        const project_idx = req.params.user_idx;
+        const project_idx = req.params.project_idx;
+
+        console.log(project_idx);
+        var result = await ProjectDao.getProjectInfo(project_idx);
+        console.log(result);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, result));
     },
 
     showAllProject : async (req, res) => {
