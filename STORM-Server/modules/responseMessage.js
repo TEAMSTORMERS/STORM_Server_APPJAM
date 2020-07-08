@@ -32,6 +32,15 @@ module.exports = {
     SHOW_PROJECT_LIST_SUCCESS : "참여한 프로젝트의 리스트 조회 성공",
     SHOW_PROJECT_LIST_FAIL : "참여한 프로젝트의 리스트 조회 실패",
 
+    //라운드
+    ROUND_COUNT_SUCCESS: "라운드 카운트 정보 출력 성공",
+    ROUND_COUNT_FAIL: "라운드 카운트 정보 출력 실패",
+
+    //라운드 셋팅
+    ROUND_SETTING_SUCCESS: "라운드 설정 성공",
+    ROUND_SETTING_FAIL: "라운드 설정 실패",
+
+    
     UNSUPPORTED_TYPE: "일단",
     USERIMG_UPLOAD_SUCCESS : "",
 
