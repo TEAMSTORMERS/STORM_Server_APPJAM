@@ -2,6 +2,7 @@ module.exports = {
     OK: 200,
     CREATED: 201,
     //202 맞으면 추가해야 함
+    CANNOT_JOIN : 202,
     NO_CONTENT: 204,
     BAD_REQUEST: 400,
     UNAUTHORIZED: 401,
