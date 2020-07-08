@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const roundController = require('../controller/roundController');
-const upload = require('../modules/multer');
 
 
-router.get('/count/:project_idx', roundController.roundCount);
-
+router.get("/count/:project_idx", roundController.roundCount);
+router.post("/setting", roundController.roundSetting);
 
 module.exports = router;

@@ -27,6 +27,15 @@ module.exports = {
     CREATED_PROJECT_SUCCESS: "프로젝트 생성 성공",
     CREATED_PROJECT_FAIL : "프로젝트 생성 실패",
 
+    //라운드
+    ROUND_COUNT_SUCCESS: "라운드 카운트 정보 출력 성공",
+    ROUND_COUNT_FAIL: "라운드 카운트 정보 출력 실패",
+
+    //라운드 셋팅
+    ROUND_SETTING_SUCCESS: "라운드 설정 성공",
+    ROUND_SETTING_FAIL: "라운드 설정 실패",
+
+    
     UNSUPPORTED_TYPE: "일단",
     USERIMG_UPLOAD_SUCCESS : "",
 
