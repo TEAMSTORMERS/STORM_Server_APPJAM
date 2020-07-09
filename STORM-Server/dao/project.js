@@ -9,10 +9,9 @@ module.exports = {
         const query = `INSERT INTO project (${fields}) VALUES (${questions})`;
         try {
             const result = await pool.queryParamArr(query, values);
-            //const insertId = result.insertId;
             return result;
         } catch (err) {
-            console.log('newProject ERROR : ', err);
+            console.log('createProject ERROR : ', err);
             throw err;
         }
     },
@@ -72,13 +71,109 @@ module.exports = {
         }
     },
 
-    //나중에하기
-    getProjectList : async (user_idx) => {
-        const query = `SELECT 정하세요`;
+    getProjectInfo : async (project_idx) => {
+        const query = `SELECT project_idx, project_name, project_comment, project_code FROM project WHERE project_idx = "${project_idx}"`;
+        try{
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch(err) {
+            console.log('getProjectInfo ERROR : ', err);
+            throw err;
+        }
+    },
+
+    getProjectparticipant : async (project_idx) => {
+        const query1 = `SELECT user_idx FROM project_participant WHERE project_idx = ${project_idx}`;
+        const query2 = `SELECT user_name, user_img FROM user WHERE user_idx in (${query1})`;
+
+        try{
+            const result = await pool.queryParamArr(query2);
+            return result;
+        } catch(err) {
+            console.log('getProjectparticipant ERROR : ', err);
+            throw err;
+        }
+    },
+
+    checkProjectParticipantIdx : async (user_idx, project_idx) => {
+        const query = `SELECT project_participant_idx FROM project_participant WHERE user_idx = ${user_idx} and project_idx = ${project_idx}`;
+
+        try{
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch(err) {
+            console.log('checkProjectParticipantIdx ERROR : ', err);
+            throw err;
+        }
+    },
+
+    deleteProjectparticipant : async (project_participant_idx) => {
+        const query = `DELETE FROM project_participant WHERE project_participant_idx = ${project_participant_idx}`;
+
+        try{
+            const result = pool.queryParamArr(query);
+            return result;
+
+        }catch(err){
+            console.log('deleteProjectparticipant ERROR : ', err);
+            throw err;
+        }
+
+    },
+
+    checkHost : async (project_participant_idx) => {
+        const query = `SELECT COUNT(*) FROM project_participant_host WHERE project_participant_idx = ${project_participant_idx}`;
+
+        try{
+            const result = pool.queryParamArr(query);
+            const ifHost = result[0]["COUNT(*)"];
+            return isHost;
+
+        }catch(err){
+            console.log('checkHost ERROR : ', err);
+            throw err;
+        }
+
+    },
+
+    getProjectIdx : async(user_idx) => {
+        const query = `SELECT project_idx FROM project_participant WHERE user_idx = ${user_idx}`;
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch (err){
+            console.log('getProjectIdx ERROR : ', err);
+            throw err;
+        }
+    },
+
+    getProjectName : async(project_idx) => {
+        const query = `SELECT project_name FROM project WHERE project_idx = ${project_idx}`;
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch (err){
+            console.log('getProjectName ERROR : ', err);
+            throw err;
+        }
+    },
+
+    getProjectCard : async (project_idx) => {
+        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
         try {
-            const result = await pool.queryParamArr(query, values);
-            const insertId = result.insertId;
-            return insertId;
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch (err) {
+            console.log('getProjectCard ERROR : ', err);
+            throw err;
+        }
+    },
+
+    showAllProject : async (project_idx) => {
+        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
+        try {
+            const result = await pool.queryParamArr(query);
+            return result;
         } catch (err) {
             console.log('getProjectList ERROR : ', err);
             throw err;

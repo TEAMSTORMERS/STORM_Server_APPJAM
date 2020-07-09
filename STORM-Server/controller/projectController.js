@@ -92,23 +92,82 @@ module.exports = {
         }
 
         //프로젝트 참여 성공
-        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS));
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS, {
+            "project_idx" : project_idx
+        }));
     },
 
-    //작업중
+    getProjectparticipant : async (req, res) => {
+        const project_idx = req.params.project_idx;
+
+        if(!project_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+    
+        var result = await ProjectDao.getProjectparticipant(project_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.SHOW_PROJECT_PARTICIPANT_LIST_SUCCESS, result));
+    },
+
     getProjectInfo : async (req, res) => {
-        const project_idx = req.params.user_idx;
+        const project_idx = req.params.project_idx;
+
+        var result = await ProjectDao.getProjectInfo(project_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, result));
+    },
+
+    deleteProjectparticipant : async(req, res) => {
+        const user_idx = req.params.user_idx
+        const project_idx = req.params.project_idx;
+
+        //값이 제대로 들어오지 않았을 경우
+        if(!user_idx || !project_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+
+        // project_participant_idx 뽑아내기
+        const result = await ProjectDao.checkProjectParticipantIdx(user_idx, project_idx);
+        const project_participant_idx = result[0].project_participant_idx;
+
+        if(project_participant_idx === -1){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_PROJECT_PARTICIPANT));  
+            return;
+        }
+
+        //삭제하기
+        const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
+
+        //만약 호스트일 경우 체크
+        const ifHost = await ProjectDao.checkHost(project_participant_idx);
+        if(ifHost === 1) {
+            //방 안에 사람들이 더 있을 때 - 다른 사람에게 호스트를 넘김
+            //방 안에 사람들이 없을 때 - 방이 터짐..?
+        }
+
+        //성공
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.DELETE_PROJECT_PARTICIPANT_SUCCESS));
     },
 
     showAllProject : async (req, res) => {
         const user_idx = req.params.user_idx;
 
-        var result = await ProjectDao.showAllProject(user_idx);
+        var project_idx = await ProjectDao.getProjectIdx(user_idx);
+        var array = [];
+        for(i = 0; i<project_idx.length; i++){
+            var project = new Object();
+            project.idx = project_idx[i].project_idx;
+            project_name = await ProjectDao.getProjectName(project.idx);
+            project.name = project_name[0].project_name;
+            project.cardImg = await ProjectDao.getProjectCard(project.idx);
+            array.push(project);
+            console.log(array);
+        }
+        
         return res.status(statusCode.OK)
-        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, {
-            "project_idx": project_idx,
-            "project_name": project_name,
-            "project_card" : result
-        }));
+        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
     }
 }
