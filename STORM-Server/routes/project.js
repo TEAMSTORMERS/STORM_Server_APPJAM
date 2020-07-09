@@ -7,5 +7,6 @@ router.post('/', projectController.createProject);
 router.post('/enter', projectController.memberEnterProject);
 router.get('/:project_idx', projectController.getProjectInfo);
 router.get('/enter/:project_idx', projectController.getProjectparticipant);
+router.delete('/:user_idx/:project_idx', projectController.deleteProjectparticipant);
 
 module.exports = router;

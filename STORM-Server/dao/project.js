@@ -96,6 +96,32 @@ module.exports = {
         }
     },
 
+    checkProjectParticipantIdx : async (user_idx, project_idx) => {
+        const query = `SELECT project_participant_idx FROM project_participant WHERE user_idx = ${user_idx} and project_idx = ${project_idx}`;
+
+        try{
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch(err) {
+            console.log('checkProjectParticipantIdx ERROR : ', err);
+            throw err;
+        }
+    },
+
+    deleteProjectparticipant : async (project_participant_idx) => {
+        const query = `DELETE FROM project_participant WHERE project_participant_idx = ${project_participant_idx}`;
+
+        try{
+            const result = pool.queryParamArr(query);
+            return result;
+
+        }catch(err){
+            console.log('deleteProjectparticipant ERROR : ', err);
+            throw err;
+        }
+
+    },
+
     //나중에하기
     showAllProject : async (user_idx) => {
         const query = `SELECT `;
