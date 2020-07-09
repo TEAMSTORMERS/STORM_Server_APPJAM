@@ -140,9 +140,12 @@ module.exports = {
         //삭제하기
         const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
 
-
         //만약 호스트일 경우 체크
-        
+        const ifHost = await ProjectDao.checkHost(project_participant_idx);
+        if(ifHost === 1) {
+            //방 안에 사람들이 더 있을 때 - 다른 사람에게 호스트를 넘김
+            //방 안에 사람들이 없을 때 - 방이 터짐..?
+        }
 
         //성공
         return res.status(statusCode.OK)

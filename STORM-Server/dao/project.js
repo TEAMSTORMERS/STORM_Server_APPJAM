@@ -122,6 +122,21 @@ module.exports = {
 
     },
 
+    checkHost : async (project_participant_idx) => {
+        const query = `SELECT COUNT(*) FROM project_participant_host WHERE project_participant_idx = ${project_participant_idx}`;
+
+        try{
+            const result = pool.queryParamArr(query);
+            const ifHost = result[0]["COUNT(*)"];
+            return isHost;
+
+        }catch(err){
+            console.log('checkHost ERROR : ', err);
+            throw err;
+        }
+
+    },
+
     //나중에하기
     showAllProject : async (user_idx) => {
         const query = `SELECT `;
