@@ -19,7 +19,6 @@ module.exports = {
     INVALID_TOKEN: '유효하지 않은 토큰값입니다.',
     AUTH_SUCCESS: '인증에 성공했습니다.',
     ISSUE_SUCCESS: '새로운 토큰이 생성되었습니다.',
-    
     // 프로필 조회
     READ_PROFILE_SUCCESS: "프로필 조회 성공",
     
@@ -46,8 +45,15 @@ module.exports = {
     ROUND_SETTING_SUCCESS: "라운드 설정 성공",
     ROUND_SETTING_FAIL: "라운드 설정 실패",
 
+    //라운드 나가기
+    ROUND_LEAVE_SUCCESS: "라운드 나가기 성공",
+    ROUND_LEAVE_FAIL: "라운드 나가기 실패",
+    
+    
+
     //카드
     CREATED_CARD : "카드 추가 성공",
+
 
     UNSUPPORTED_TYPE: "일단",
     USERIMG_UPLOAD_SUCCESS : "",
