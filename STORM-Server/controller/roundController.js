@@ -3,7 +3,7 @@ const statusCode = require('../modules/statusCode');
 const resMessage = require('../modules/responseMessage');
 const roundModel = require('../dao/round');
 
-const round = {
+module.exports = {
     roundCount : async (req, res) => {
         //1. request body에서 값을 읽어온다.
 
@@ -37,5 +37,3 @@ const round = {
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER, req.body));
     }
 }
-
-module.exports = round;

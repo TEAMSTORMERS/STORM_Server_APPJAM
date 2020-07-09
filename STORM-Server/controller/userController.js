@@ -3,7 +3,7 @@ const statusCode = require('../modules/statusCode');
 const resMessage = require('../modules/responseMessage');
 const UserDao = require('../dao/user');
 
-const user = {
+module.exports = {
     signup : async (req, res) => {
         //1. request body에서 값을 읽어온다.
         const {user_name, user_token_kakao, user_token_google} = req.body;
@@ -41,5 +41,3 @@ const user = {
         res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER));
     }
 }
-
-module.exports = user;
