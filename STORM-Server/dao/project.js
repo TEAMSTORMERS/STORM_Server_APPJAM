@@ -83,6 +83,19 @@ module.exports = {
         }
     },
 
+    getProjectparticipant : async (project_idx) => {
+        const query1 = `SELECT user_idx FROM project_participant WHERE project_idx = ${project_idx}`;
+        const query2 = `SELECT user_name, user_img FROM user WHERE user_idx in (${query1})`;
+
+        try{
+            const result = await pool.queryParamArr(query2);
+            return result;
+        } catch(err) {
+            console.log('getProjectparticipant ERROR : ', err);
+            throw err;
+        }
+    },
+
     //나중에하기
     showAllProject : async (user_idx) => {
         const query = `SELECT `;
