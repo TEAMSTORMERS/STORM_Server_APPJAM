@@ -92,12 +92,61 @@ module.exports = {
         }
 
         //프로젝트 참여 성공
-        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS));
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.JOIN_PROJECT_SUCCESS, {
+            "project_idx" : project_idx
+        }));
     },
 
-    //작업중
+    getProjectparticipant : async (req, res) => {
+        const project_idx = req.params.project_idx;
+
+        if(!project_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+    
+        var result = await ProjectDao.getProjectparticipant(project_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.SHOW_PROJECT_PARTICIPANT_LIST_SUCCESS, result));
+    },
+
     getProjectInfo : async (req, res) => {
-        const project_idx = req.params.user_idx;
+        const project_idx = req.params.project_idx;
+
+        var result = await ProjectDao.getProjectInfo(project_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, result));
+    },
+
+    deleteProjectparticipant : async(req, res) => {
+        const user_idx = req.params.user_idx
+        const project_idx = req.params.project_idx;
+
+        //값이 제대로 들어오지 않았을 경우
+        if(!user_idx || !project_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+
+        // project_participant_idx 뽑아내기
+        const result = await ProjectDao.checkProjectParticipantIdx(user_idx, project_idx);
+        const project_participant_idx = result[0].project_participant_idx;
+
+        if(project_participant_idx === -1){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_PROJECT_PARTICIPANT));  
+            return;
+        }
+
+        //삭제하기
+        const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
+
+
+        //만약 호스트일 경우 체크
+        
+
+        //성공
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.DELETE_PROJECT_PARTICIPANT_SUCCESS));
     },
 
     showAllProject : async (req, res) => {
