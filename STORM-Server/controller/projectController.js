@@ -140,9 +140,12 @@ module.exports = {
         //삭제하기
         const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
 
-
         //만약 호스트일 경우 체크
-        
+        const ifHost = await ProjectDao.checkHost(project_participant_idx);
+        if(ifHost === 1) {
+            //방 안에 사람들이 더 있을 때 - 다른 사람에게 호스트를 넘김
+            //방 안에 사람들이 없을 때 - 방이 터짐..?
+        }
 
         //성공
         return res.status(statusCode.OK)
@@ -152,12 +155,19 @@ module.exports = {
     showAllProject : async (req, res) => {
         const user_idx = req.params.user_idx;
 
-        var result = await ProjectDao.showAllProject(user_idx);
+        var project_idx = await ProjectDao.getProjectIdx(user_idx);
+        var array = [];
+        for(i = 0; i<project_idx.length; i++){
+            var project = new Object();
+            project.idx = project_idx[i].project_idx;
+            project_name = await ProjectDao.getProjectName(project.idx);
+            project.name = project_name[0].project_name;
+            project.cardImg = await ProjectDao.getProjectCard(project.idx);
+            array.push(project);
+            console.log(array);
+        }
+        
         return res.status(statusCode.OK)
-        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, {
-            "project_idx": project_idx,
-            "project_name": project_name,
-            "project_card" : result
-        }));
+        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
     }
 }
