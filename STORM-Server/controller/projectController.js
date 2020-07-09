@@ -155,12 +155,19 @@ module.exports = {
     showAllProject : async (req, res) => {
         const user_idx = req.params.user_idx;
 
-        var result = await ProjectDao.showAllProject(user_idx);
+        var project_idx = await ProjectDao.getProjectIdx(user_idx);
+        var array = [];
+        for(i = 0; i<project_idx.length; i++){
+            var project = new Object();
+            project.idx = project_idx[i].project_idx;
+            project_name = await ProjectDao.getProjectName(project.idx);
+            project.name = project_name[0].project_name;
+            project.cardImg = await ProjectDao.getProjectCard(project.idx);
+            array.push(project);
+            console.log(array);
+        }
+        
         return res.status(statusCode.OK)
-        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, {
-            "project_idx": project_idx,
-            "project_name": project_name,
-            "project_card" : result
-        }));
+        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
     }
 }

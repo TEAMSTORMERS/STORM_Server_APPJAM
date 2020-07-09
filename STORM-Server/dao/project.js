@@ -9,7 +9,6 @@ module.exports = {
         const query = `INSERT INTO project (${fields}) VALUES (${questions})`;
         try {
             const result = await pool.queryParamArr(query, values);
-            //const insertId = result.insertId;
             return result;
         } catch (err) {
             console.log('createProject ERROR : ', err);
@@ -137,13 +136,44 @@ module.exports = {
 
     },
 
-    //나중에하기
-    showAllProject : async (user_idx) => {
-        const query = `SELECT `;
+    getProjectIdx : async(user_idx) => {
+        const query = `SELECT project_idx FROM project_participant WHERE user_idx = ${user_idx}`;
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch (err){
+            console.log('getProjectIdx ERROR : ', err);
+            throw err;
+        }
+    },
+
+    getProjectName : async(project_idx) => {
+        const query = `SELECT project_name FROM project WHERE project_idx = ${project_idx}`;
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch (err){
+            console.log('getProjectName ERROR : ', err);
+            throw err;
+        }
+    },
+
+    getProjectCard : async (project_idx) => {
+        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
         try {
-            const result = await pool.queryParamArr(query, values);
-            const insertId = result.insertId;
-            return insertId;
+            const result = await pool.queryParamArr(query);
+            return result;
+        } catch (err) {
+            console.log('getProjectCard ERROR : ', err);
+            throw err;
+        }
+    },
+
+    showAllProject : async (project_idx) => {
+        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
+        try {
+            const result = await pool.queryParamArr(query);
+            return result;
         } catch (err) {
             console.log('getProjectList ERROR : ', err);
             throw err;

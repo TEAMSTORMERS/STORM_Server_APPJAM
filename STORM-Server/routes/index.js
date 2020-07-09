@@ -9,5 +9,6 @@ router.get('/', function(req, res, next) {
 router.use('/user', require('./user'));
 router.use('/project', require('./project'));
 router.use('/round', require('./round'));
+router.use('/card', require('./card'));
 
 module.exports = router;
