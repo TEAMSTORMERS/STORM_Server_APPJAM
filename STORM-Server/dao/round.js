@@ -118,7 +118,7 @@ module.exports = {
             const round_result = await pool.queryParam(query1);
             const card_result = await pool.queryParam(query2)
             const project_result = await pool.queryParam(query3);
-            //console.log(round_result, card_result, project_result);
+
             var data = new Object();
             data.project_name = project_result[0]["project_name"];
             data.round_number = round_result[0]["round_number"];
@@ -135,10 +135,12 @@ module.exports = {
             data.card_list = array
             console.log(data);
             return data
-               
+
         }catch(err){
             console.log(err);
         }
     }
+
+
 }
 
