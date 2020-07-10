@@ -7,5 +7,6 @@ const card = require('../dao/card');
 router.post('/', cardController.createCard);
 router.post('/scrap', cardController.createscrap);
 router.delete('/scrap/:user_idx/:card_idx', cardController.deletescrap);
+router.post('/memo', cardController.createMemo);
 
 module.exports = router;

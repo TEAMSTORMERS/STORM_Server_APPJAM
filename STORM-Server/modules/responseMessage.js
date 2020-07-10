@@ -52,6 +52,10 @@ module.exports = {
     //카드
     CREATED_CARD : "카드 추가 성공",
     SCRAP_CARD_SUCCESS : "카드 스크랩 성공",
+    DELETE_SCRAP_SUCCESS : "카드 스크랩 취소 성공",
+
+    //메모
+    CREATED_MEMO : "메모 추가 성공",
 
 
     UNSUPPORTED_TYPE: "일단",
