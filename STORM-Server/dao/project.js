@@ -159,7 +159,7 @@ module.exports = {
     },
 
     getProjectCard : async (project_idx) => {
-        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
+        const query = `SELECT card_img, card_txt FROM card WHERE project_idx = ${project_idx}`;
         try {
             const result = await pool.queryParamArr(query);
             return result;
@@ -170,7 +170,7 @@ module.exports = {
     },
 
     showAllProject : async (project_idx) => {
-        const query = `SELECT card_img FROM card WHERE project_idx = ${project_idx}`;
+        const query = `SELECT card_img, card_txt FROM card WHERE project_idx = ${project_idx}`;
         try {
             const result = await pool.queryParamArr(query);
             return result;
