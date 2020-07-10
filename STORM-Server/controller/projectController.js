@@ -119,7 +119,7 @@ module.exports = {
     },
 
     deleteProjectparticipant : async(req, res) => {
-        const user_idx = req.params.user_idx
+        const user_idx = req.params.user_idx;
         const project_idx = req.params.project_idx;
 
         //값이 제대로 들어오지 않았을 경우
