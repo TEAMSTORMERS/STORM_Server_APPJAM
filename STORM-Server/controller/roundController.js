@@ -6,7 +6,6 @@ const RoundDao = require('../dao/round');
 module.exports = {
     roundCount : async (req, res) => {
         //1. request body에서 값을 읽어온다.
-
         const project_idx = req.params.project_idx;
       
         if(!project_idx){

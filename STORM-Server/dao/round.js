@@ -1,5 +1,4 @@
 const pool = require('../modules/pool');
-const { query } = require('express');
 
 module.exports = {
     countInfo: async (project_idx) => {

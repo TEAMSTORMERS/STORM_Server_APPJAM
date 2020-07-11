@@ -56,10 +56,8 @@ module.exports = {
 
     //메모
     CREATED_MEMO : "메모 추가 성공",
-
-
-    UNSUPPORTED_TYPE: "일단",
-    USERIMG_UPLOAD_SUCCESS : "",
+    UPDATED_MEMO : "메모 수정 성공",
+    SHOW_MEMO : "카드 상세 정보 조회 성공",
 
     //DB
     DB_ERROR: "DB 오류"

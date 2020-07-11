@@ -73,5 +73,32 @@ module.exports = {
              console.log('createMemo ERROR : ', err);
              throw err;
         }
+    },
+
+    updateMemo : async(user_idx, card_idx, memo_content) => {
+        const query = `UPDATE memo SET memo_content = "${memo_content}" WHERE user_idx = ${user_idx} AND card_idx = ${card_idx}`;
+
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch(err){
+             console.log('createMemo ERROR : ', err);
+             throw err;
+        }
+    },
+
+    showCard : async(user_idx, card_idx) => {
+        //card_idx의 user_idx와 scrap_idx의 user_idx는 다르다. 이 점을 유의해서 다시 작성할 것
+        const query = `SELECT c.card_idx, c.card_img, c.card_txt, m.memo_content, u.user_img, count(s.scrap_idx) AS scrap_flag
+                       FROM card AS c JOIN memo AS m ON c.card_idx = m.card_idx JOIN scrap AS s ON c.card_idx = s.card_idx AND c.user_idx = s.user_idx JOIN user AS u ON s.user_idx = u.user_idx
+                       WHERE u.user_idx = ${user_idx} AND c.card_idx = ${card_idx}`;
+
+        try{
+            const result = await pool.queryParam(query);
+            return result;
+        }catch(err){
+            console.log('createMemo ERROR : ', err);
+            throw err;
+        }
     }
 }
