@@ -6,6 +6,7 @@ const RoundDao = require('../dao/round');
 module.exports = {
     roundCount : async (req, res) => {
         //1. request body에서 값을 읽어온다.
+
         const project_idx = req.params.project_idx;
       
         if(!project_idx){
@@ -94,5 +95,10 @@ module.exports = {
       }
       const result = await RoundDao.roundCardList(project_idx, round_idx);
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS, result));
+    },
+    roundFinalInfo: async(req, res) => {
+      const project_idx = req.params.project_idx;
+
+      const result = await RoundDao.roundFinalInfo(project_idx)
     }
 }
