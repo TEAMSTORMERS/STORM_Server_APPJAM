@@ -100,5 +100,7 @@ module.exports = {
       const project_idx = req.params.project_idx;
 
       const result = await RoundDao.roundFinalInfo(project_idx)
+      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS, result));
+      
     }
 }
