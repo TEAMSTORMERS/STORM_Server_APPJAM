@@ -142,7 +142,6 @@ module.exports = {
     },
     
     roundFinalInfo: async(project_idx) => {
-        console.log('여기')
         try{
             const query1 = `SELECT round_number, round_purpose, round_time FROM round r 
             JOIN project p ON r.project_idx = p.project_idx WHERE p.project_idx = ${project_idx}`;
@@ -169,13 +168,6 @@ module.exports = {
             return array
             
         }catch(err){
-
         }
     }
-
 }
-
-
-
-
-

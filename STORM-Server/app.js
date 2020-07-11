@@ -7,7 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 
 var app = express();
-app.io = require('socket.io')();
+
+/*
+app.io = require(socket.io);
 
 let room = {};
 
@@ -52,7 +54,7 @@ app.io.on('connection',(socket) => {
   });
 });
 
-
+*/
 
 
   // view engine setup
