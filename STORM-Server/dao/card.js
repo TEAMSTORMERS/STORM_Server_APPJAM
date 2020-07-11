@@ -90,8 +90,10 @@ module.exports = {
     showCard : async(user_idx, card_idx) => {
         //card_idx의 user_idx와 scrap_idx의 user_idx는 다르다. 이 점을 유의해서 다시 작성할 것
         const query = `SELECT c.card_idx, c.card_img, c.card_txt, m.memo_content, u.user_img, count(s.scrap_idx) AS scrap_flag
-                       FROM card AS c JOIN memo AS m ON c.card_idx = m.card_idx JOIN scrap AS s ON c.card_idx = s.card_idx AND c.user_idx = s.user_idx JOIN user AS u ON s.user_idx = u.user_idx
-                       WHERE u.user_idx = ${user_idx} AND c.card_idx = ${card_idx}`;
+                       FROM memo AS m JOIN scrap AS s ON m.card_idx = s.card_idx
+                       JOIN card AS c ON c.card_idx = s.card_idx
+                       JOIN user AS u ON s.user_idx = u.user_idx
+                       WHERE m.user_idx = u.user_idx AND u.user_idx = ${user_idx} AND c.card_idx = ${card_idx}`;
 
         try{
             const result = await pool.queryParam(query);
