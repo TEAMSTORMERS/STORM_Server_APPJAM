@@ -169,5 +169,21 @@ module.exports = {
         
         return res.status(statusCode.OK)
         .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
+    },
+    finalInfo: async(req, res) => {
+        const project_idx = req.params.project_idx;
+        console.log('test');
+        const result = await ProjectDao.finalInfo(project_idx);
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, result));
+    },
+    finalScrapList: async(req, res) => {
+        const user_idx = req.params.user_idx;
+        const project_idx = req.params.project_idx;
+        console.log('잘되나');
+        const result = await ProjectDao.finalScarpList(user_idx, project_idx);
+        
+        return res.status(statusCode.OK)
+        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, result));
     }
 }
