@@ -141,23 +141,12 @@ module.exports = {
         }
     },
     roundFinalInfo: async(project_idx) => {
-        console.log('여기')
         try{
             const query1 = `SELECT round_purpose, round_time, round_number FROM round r JOIN project p ON r.project_idx = p.project_idx JOIN round_participant rp ON r.round_idx = rp.round_idx WHERE p.project_idx = ${project_idx}`
             const result = await pool.queryParam(query1);
             console.log('여기')
             console.log(result);
         }catch(err){
-
         }
     }
-
-
-
-
 }
-
-
-
-
-
