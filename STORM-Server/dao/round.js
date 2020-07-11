@@ -140,20 +140,38 @@ module.exports = {
             console.log(err);
         }
     },
+    
     roundFinalInfo: async(project_idx) => {
         console.log('여기')
         try{
-            const query1 = `SELECT round_purpose, round_time, round_number FROM round r JOIN project p ON r.project_idx = p.project_idx JOIN round_participant rp ON r.round_idx = rp.round_idx WHERE p.project_idx = ${project_idx}`
-            const result = await pool.queryParam(query1);
-            console.log('여기')
-            console.log(result);
+            const query1 = `SELECT round_number, round_purpose, round_time FROM round r 
+            JOIN project p ON r.project_idx = p.project_idx WHERE p.project_idx = ${project_idx}`;
+            
+           
+            const result = await pool.queryParam(query1)
+
+            var array = []
+            for(var i=0;i< result.length;i++){
+                const query2 = `select user_name, user_img FROM user u 
+                JOIN round_participant rp ON u.user_idx = rp.user_idx 
+                JOIN round r ON r.round_idx = rp.round_idx 
+                JOIN project p ON p.project_idx = r.project_idx 
+                WHERE r.project_idx = ${project_idx} AND r.round_number = ${result[i]["round_number"]};`;
+                const result2 = await pool.queryParam(query2);
+                console.log(result2)
+                var data = new Object();
+                data.round_number = result[i]["round_number"]
+                data.round_purpose = result[i]["round_purpose"]
+                data.round_time = result[i]["round_time"]
+                data.round_participant = result2 
+                array.push(data)
+            }
+            return array
+            
         }catch(err){
 
         }
     }
-
-
-
 
 }
 
