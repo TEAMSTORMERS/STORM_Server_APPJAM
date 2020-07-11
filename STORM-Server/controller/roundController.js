@@ -94,5 +94,10 @@ module.exports = {
       }
       const result = await RoundDao.roundCardList(project_idx, round_idx);
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS, result));
+    },
+    roundFinalInfo: async(req, res) => {
+      const project_idx = req.params.project_idx;
+
+      const result = await RoundDao.roundFinalInfo(project_idx)
     }
 }

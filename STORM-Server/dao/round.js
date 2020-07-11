@@ -110,7 +110,7 @@ module.exports = {
     },
     roundCardList: async(project_idx, round_idx) => {
         const query1 = `SELECT round_number, round_purpose, round_time FROM round WHERE round_idx = ${round_idx}`;
-        const query2 = `SELECT card_idx, card_img FROM card WHERE round_idx = ${round_idx}`;
+        const query2 = `SELECT card_idx, card_img, card_txt FROM card WHERE round_idx = ${round_idx}`;
         const query3 = `SELECT project_name FROM project WHERE project_idx = ${project_idx}`;
 
         try{
@@ -128,6 +128,7 @@ module.exports = {
                 var data2 = new Object();
                 data2.card_idx =card_result[0]["card_idx"];
                 data2.card_img = card_result[0]["card_img"];
+                data2.card_txt = card_result[0]["card_txt"];
                 array.push(data2);
                 console.log(data2);
             };
@@ -138,7 +139,25 @@ module.exports = {
         }catch(err){
             console.log(err);
         }
+    },
+    roundFinalInfo: async(project_idx) => {
+        console.log('여기')
+        try{
+            const query1 = `SELECT round_purpose, round_time, round_number FROM round r JOIN project p ON r.project_idx = p.project_idx JOIN round_participant rp ON r.round_idx = rp.round_idx WHERE p.project_idx = ${project_idx}`
+            const result = await pool.queryParam(query1);
+            console.log('여기')
+            console.log(result);
+        }catch(err){
+
+        }
     }
 
+
+
+
 }
+
+
+
+
 

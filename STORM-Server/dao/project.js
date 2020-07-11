@@ -1,4 +1,5 @@
 const pool = require('../modules/pool');
+const { queryParam } = require('../modules/pool');
 
 module.exports = {
     //host가 새로운 프로젝트 생성
@@ -178,5 +179,67 @@ module.exports = {
             console.log('getProjectList ERROR : ', err);
             throw err;
         }
+    },
+
+    finalInfo: async(project_idx) => {
+        const query1 = `SELECT COUNT(*) FROM round WHERE project_idx = ${project_idx}`;
+        const query2 = `SELECT project_name, project_date FROM project WHERE project_idx = ${project_idx}`;
+        const query3 = `SELECT user_idx FROM project_participant WHERE project_idx = ${project_idx}`;
+        console.log('test2')
+        try{
+            const round_count = await pool.queryParam(query1);
+            const round_number = round_count[0]["COUNT(*)"];
+            console.log(round_number);
+            const project_result = await pool.queryParam(query2);
+            console.log(project_result);
+            const user_idx_list = await pool.queryParam(query3);
+            const array = []
+            console.log(user_idx_list);
+            for(var i=0;i<user_idx_list.length;i++){
+                const query4 = `SELECT user_img FROM project_participant AS p, user AS u WHERE u.user_idx = ${user_idx_list[i]["user_idx"]}`;
+                const user_img_list = await pool.queryParam(query4);
+                array.push(user_img_list[0]["user_img"]);
+                console.log(array)
+            }
+            var data = new Object();
+            data.project_name = project_result[0]["project_name"];
+            data.project_date = project_result[0]["project_date"];
+            data.round_count = round_number;
+            data.project_participants_list = array;
+            return data
+        }catch(err){
+
+        }
+    },
+    finalScarpList: async(user_idx, project_idx) => {
+        const query1 = `SELECT p.project_name, c.card_idx, c.card_img, c.card_txt FROM project AS p JOIN card AS c ON p.project_idx = c.project_idx JOIN scrap AS s ON c.card_idx = s.card_idx  WHERE p.project_idx = ${project_idx} AND s.user_idx = ${user_idx}`;
+//여기까지 했으니 이어서 보게나
+        console.log('여기1')
+        try{
+            console.log('여기2')
+            const query1_result = await pool.queryParam(query1);
+            console.log(query1_result)
+            console.log(query1_result.length)
+
+            const array = []
+
+            for(var i=0;i<query1_result.length;i++){
+                const data = new Object();
+                data.card_idx = query1_result[i]["card_idx"];
+                data.card_img = query1_result[i]["card_img"];
+                data.card_txt = query1_result[i]["card_txt"];
+                array.push(data);
+            }
+            const data2 = new Object();
+            data2.project_name = query1_result[0]["project_name"];
+            data2.scrap_count = query1_result.length;
+            data2.card_item = array
+            console.log(data2)
+            
+           return data2;
+        }catch(err){
+
+        }
     }
+
 }
