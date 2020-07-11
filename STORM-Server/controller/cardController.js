@@ -78,4 +78,37 @@ module.exports = {
 
         res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_MEMO));
     },
+
+    updateMemo : async (req, res) => {
+        const {user_idx, card_idx, memo_content} = req.body;
+
+        if(!user_idx || !card_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+
+        const result = await CardDao.updateMemo(card_idx, user_idx, memo_content);
+        if(result === -1) {
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.UPDATED_MEMO));
+    },
+
+    showCard : async (req, res) => {
+        const user_idx = req.params.user_idx;
+        const card_idx = req.params.card_idx;
+
+        if(!user_idx || !card_idx){
+            res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+            return;
+        }
+
+        const result = await CardDao.showCard(user_idx, card_idx);
+        if(result === -1) {
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.SHOW_MEMO, result));
+    }
 }
