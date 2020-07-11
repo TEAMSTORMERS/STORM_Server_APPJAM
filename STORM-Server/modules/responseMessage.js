@@ -48,15 +48,16 @@ module.exports = {
     //라운드 나가기
     ROUND_LEAVE_SUCCESS: "라운드 나가기 성공",
     ROUND_LEAVE_FAIL: "라운드 나가기 실패",
-    
-    
 
     //카드
     CREATED_CARD : "카드 추가 성공",
+    SCRAP_CARD_SUCCESS : "카드 스크랩 성공",
+    DELETE_SCRAP_SUCCESS : "카드 스크랩 취소 성공",
 
-
-    UNSUPPORTED_TYPE: "일단",
-    USERIMG_UPLOAD_SUCCESS : "",
+    //메모
+    CREATED_MEMO : "메모 추가 성공",
+    UPDATED_MEMO : "메모 수정 성공",
+    SHOW_MEMO : "카드 상세 정보 조회 성공",
 
     //DB
     DB_ERROR: "DB 오류"

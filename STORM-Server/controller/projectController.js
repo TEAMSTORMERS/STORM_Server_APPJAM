@@ -119,7 +119,7 @@ module.exports = {
     },
 
     deleteProjectparticipant : async(req, res) => {
-        const user_idx = req.params.user_idx
+        const user_idx = req.params.user_idx;
         const project_idx = req.params.project_idx;
 
         //값이 제대로 들어오지 않았을 경우
@@ -162,9 +162,8 @@ module.exports = {
             project.idx = project_idx[i].project_idx;
             project_name = await ProjectDao.getProjectName(project.idx);
             project.name = project_name[0].project_name;
-            project.cardImg = await ProjectDao.getProjectCard(project.idx);
+            project.card = await ProjectDao.getProjectCard(project.idx);
             array.push(project);
-            console.log(array);
         }
         
         return res.status(statusCode.OK)

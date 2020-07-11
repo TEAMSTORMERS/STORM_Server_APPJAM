@@ -7,45 +7,46 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 
 var app = express();
+// app.io = require(socket.io);
 
-let room = [];
+// let room = [];
 
-app.io = require('socket.io')();
+// app.io = require('socket.io')();
 
 
-app.io.on('connection',(socket) => {
+// app.io.on('connection',(socket) => {
 
-  console.log("유저가 들어왔다.")
+//   console.log("유저가 들어왔다.")
 
-  // socket.on('createRoom', (code) => {
-  //   room.push(code);
-  // })
+//   // socket.on('createRoom', (code) => {
+//   //   room.push(code);
+//   // })
 
-  // 요거 추가
-  socket.on('joinRoom', (code) => {
-    // socket.join(code, () => {
-    //   app.io.to(code).emit('joinRoom', code);
-    //   console.log('아무거나')
-    // });
-    console.log(code)
+//   // 요거 추가
+//   socket.on('joinRoom', (code) => {
+//     // socket.join(code, () => {
+//     //   app.io.to(code).emit('joinRoom', code);
+//     //   console.log('아무거나')
+//     // });
+//     console.log(code)
   
 
-    // socket.join(room[num], () => {
-    //   app.io.to(room[num]).emit('joinRoom', num, name);
-    // });
-  });
+//     // socket.join(room[num], () => {
+//     //   app.io.to(room[num]).emit('joinRoom', num, name);
+//     // });
+//   });
 
-  // 요거 추가
-  socket.on('leaveRoom', (num, name) => {
-    socket.leave(room[num], () => {
-      app.io.to(room[num]).emit('leaveRoom', num, name);
-    });
-  });
+//   // 요거 추가
+//   socket.on('leaveRoom', (num, name) => {
+//     socket.leave(room[num], () => {
+//       app.io.to(room[num]).emit('leaveRoom', num, name);
+//     });
+//   });
 
-  socket.on('disconnect', () => {
-    console.log('유저가 나갔다.');
-  });
-});
+//   socket.on('disconnect', () => {
+//     console.log('유저가 나갔다.');
+//   });
+// });
 
 
 
