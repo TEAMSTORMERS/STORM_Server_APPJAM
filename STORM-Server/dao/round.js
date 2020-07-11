@@ -147,7 +147,6 @@ module.exports = {
             console.log('여기')
             console.log(result);
         }catch(err){
-
         }
     }
 }
