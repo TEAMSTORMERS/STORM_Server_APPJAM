@@ -164,6 +164,7 @@ module.exports = {
             project.name = project_name[0].project_name;
             project.card = await ProjectDao.getProjectCard(project.idx);
             array.push(project);
+            console.log(project.card);
         }
         
         return res.status(statusCode.OK)
