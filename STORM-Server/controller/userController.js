@@ -37,6 +37,6 @@ module.exports = {
     }
 
     //3. 가입성공
-    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER));
+    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER, userIdx));
   }
 }
