@@ -14,7 +14,7 @@
 <br>
 
 ### ERD
-![StormD](https://user-images.githubusercontent.com/55133871/86811851-54a7fe80-c0b9-11ea-9a37-1e315e361649.PNG)
+![erd](https://user-images.githubusercontent.com/55133871/87293169-e5a92a80-c53c-11ea-9940-5466fee4323a.png)
 
 <br>
 <br>
