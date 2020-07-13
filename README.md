@@ -12,23 +12,16 @@
 <br>
 <br>
 
-### ⚡️Main Function
+## ⚡️Main Function
+추후 추가 예정
 
-<br>
-<br>
+## ⚡️ER Diagram
+![1](https://user-images.githubusercontent.com/55133871/87335208-e496ee00-c57a-11ea-99e3-d9c43fd1602e.png)
 
-### ⚡️ER Diagram
-![erd](https://user-images.githubusercontent.com/55133871/87293169-e5a92a80-c53c-11ea-9940-5466fee4323a.png)
+## ⚡️Server Architecture
+![2](https://user-images.githubusercontent.com/55133871/87335213-e660b180-c57a-11ea-9b65-f692d2fe52d6.png)
 
-<br>
-<br>
-
-### ⚡️Server Architecture
-![architecture](https://user-images.githubusercontent.com/55133871/87332436-8536df00-c576-11ea-8419-277188c4c3d6.png)
-<br>
-<br>
-
-### ⚡️Dependencies Module
+## ⚡️Dependencies Module
 ```
 "dependencies": {
     "async": "^3.2.0",
@@ -48,17 +41,11 @@
 }
 ```
 
-<br>
-<br>
-
-### ⚡️Developers
-[🌪장세영🌪](https://github.com/Say-young)
-<br>[🌪조충범🌪](https://github.com/cndqjacndqja)<br>
+## ⚡️Developers
+* [🌪장세영🌪](https://github.com/Say-young) <br>
+* [🌪조충범🌪](https://github.com/cndqjacndqja)<br>
 * [역할분담](https://github.com/TEAMSTORMERS/STORM_Server/projects/1)
 
-<br>
-<br>
-
-### ⚡️Client
+## ⚡️Client
 * [Android](https://github.com/TEAMSTORMERS/STORM_Android) <br>
 * [iOS](https://github.com/TEAMSTORMERS/STORM_iOS)
