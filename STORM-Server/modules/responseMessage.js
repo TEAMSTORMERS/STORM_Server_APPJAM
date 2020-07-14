@@ -2,6 +2,7 @@ module.exports = {
     NULL_VALUE: "필요한 값이 없습니다",
     OUT_OF_VALUE: "파라미터 값이 잘못되었습니다",
 
+
     // 회원가입
     CREATED_USER: "회원 가입 성공",
     DELETE_USER: "회원 탈퇴 성공",
@@ -47,9 +48,30 @@ module.exports = {
     ROUND_SETTING_SUCCESS: "라운드 설정 성공",
     ROUND_SETTING_FAIL: "라운드 설정 실패",
 
+    //라운드 정보
+    ROUND_INFO_SUCCESS: "라운드 정보 출력 성공",
+    ROUND_INFO_FAIL: "라운드 정보 출력 실패",
+
+    //라운드 참여
+    ROUND_ENTER_SUCCESS:"라운드 참여자 목록 추가 성공",
+    ROUND_ENTER_FAIL:"라운드 참여자 목록 추가 실패",
+
+    //라운드 참여자 목록
+    ROUND_MEMBERLIST_SUCCESS: "라운드 참여자 목록 출력 성공",
+    ROUND_MEMBERLIST_FAIL: "라운드 참여자 목록 출력 실패",
+
     //라운드 나가기
     ROUND_LEAVE_SUCCESS: "라운드 나가기 성공",
     ROUND_LEAVE_FAIL: "라운드 나가기 실패",
+
+    //라운드 카드 리스트
+    ROUND_CARDLIST_SUCCESS: "해당 라운드 카드 리스트 정보들을 불러오는데에 성공했습니다.",
+    ROUND_CARDLIST_FAIL: "해당 라운드 카드 리스트 정보들을 불러오는데에 실패했습니다.",
+
+    //라운드 별 최종 정보
+    ROUND_FINALINFO_SUCCESS: "최종 정리 뷰 라운드 별 모든 정보 받아오기 성공.",
+    ROUND_FINALINFO_FAIL: "최종 정리 뷰 라운드 별 모든 정보 받아오기 실패했습니다.",
+
 
     //카드
     CREATED_CARD : "카드 추가 성공",

@@ -9,6 +9,12 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.io = require('socket.io')();
 
+app.io.on('connection',(socket) => {
+
+  console.log(socket.id + "가 들어왔다.");
+
+
+
 let room = {};
 
 app.io.on('connection',(socket) => {
@@ -16,49 +22,15 @@ app.io.on('connection',(socket) => {
   console.log(socket.id + "가 들어왔다.");
 
   socket.on('joinRoom', (projectCode) => {
-
     const [roomCode, username] = projectCode;
 
-    if(!room.hasOwnProperty(roomCode)){
       socket.join(roomCode, () => {
-        room[roomCode] = {};
-        room[roomCode].userList = [];
-        room[roomCode].socketId = [];
-        room[roomCode].userList.push(username);
-        room[roomCode].socketId.push(socket.id);
-        console.log("1");
-        app.io.to(socket.id).emit('roomState', room[roomCode].socketId);
+        app.io.to(roomCode).emit('roomState', `${socket.id}`);
       });
-    } else {
-      room[roomCode].userList.push(username);
-      room[roomCode].socketId.push(socket.id);
-      console.log("2");
-      app.io.to(socket.id).emit('roomState', room[roomCode].socketId);
-    }
-
   });
+ 
   
-  
-  socket.on('leaveRoom', (projectCode) => {
-    const [roomCode, username] = projectCode;
-
-    if(room[roomCode].userList.length === 0){
-        socket.leave(roomCode, () => {
-        console.log("3");
-        app.io.to(socket.id).emit('roomState', "방이 사라집니다.");
-      });
-    }else{
-      for(i = 0; i<room[roomCode].userList.length; i++){
-        //room[roomCode].socketId.splice(room[roomCode].socketId.indexOf(socket.id),1);
-        if(room[roomCode].socketId[i] === socket.id){
-          console.log("4");
-          room[roomCode].userList.splice(i, 1);
-          room[roomCode].socketId.splice(i, 1);
-        }
-      }
-      app.io.to(socket.id).emit('roomState', room[roomCode].socketId);
-    }
-  });
+ 
   
   
   socket.on('startProject', (roomCode) => {
@@ -71,41 +43,19 @@ app.io.on('connection',(socket) => {
     }
   });
 
-  socket.on('roundSetting', (roomCode) => {
-    try{
-      for(i = 0; i<=room[roomCode].userList.length; i++){
-        app.io.to(room[roomCode].socketId[i]).emit('roundReady');
-      }
-    }catch(err){
-      console.log(err);
-    }
-  });
 
-  socket.on('roundSettingFin', (roomCode) => {
-    try{
-      for(i = 0; i<=room[roomCode].userList.length; i++){
-        app.io.to(room[roomCode].socketId[i]).emit('roundSet');
-      }
-    }catch(err){
-      console.log(err);
-    }
-  });
-  
-  socket.on('startRound', (roomCode) => {
-    try{
-      for(i = 0; i<=room[roomCode].userList.length; i++){
-        app.io.to(room[roomCode].socketId[i]).emit('pass');
-      }
-    }catch(err){
-      console.log(err);
-    }
-  });
+
+  socket.on('leave', (roomCode) => {
+    socket.leave(roomCode, () => {
+      app.io.to(roomCode).emit('leaveProject', "test")
+    });
+  }); 
 
   socket.on('disconnect', () => {
     console.log(socket.id+'나감.');
   });
+  
 });
-
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));
