@@ -28,6 +28,7 @@ module.exports = {
     CANNOT_JOIN : "이미 프로젝트가 진행중입니다.",
     JOIN_PROJECT_SUCCESS: "프로젝트 참여 성공",
     JOIN_PROJECT_FAIL : "프로젝트 참여 실패",
+    READ_PROJECT_INFO : "프로젝트 정보 출력 성공",
     SHOW_PROJECT_LIST_SUCCESS : "참여한 프로젝트의 리스트 조회 성공",
     SHOW_PROJECT_LIST_FAIL : "참여한 프로젝트의 리스트 조회 실패",
     SHOW_PROJECT_PARTICIPANT_LIST_SUCCESS : "프로젝트 참여자 목록 출력 성공",
@@ -40,6 +41,7 @@ module.exports = {
     //라운드
     ROUND_COUNT_SUCCESS: "라운드 카운트 정보 출력 성공",
     ROUND_COUNT_FAIL: "라운드 카운트 정보 출력 실패",
+    GET_ROUND_CARD_LIST_SUCCESS : "라운드 카드 정보 출력 성공",
 
     //라운드 셋팅
     ROUND_SETTING_SUCCESS: "라운드 설정 성공",
@@ -58,6 +60,9 @@ module.exports = {
     CREATED_MEMO : "메모 추가 성공",
     UPDATED_MEMO : "메모 수정 성공",
     SHOW_MEMO : "카드 상세 정보 조회 성공",
+
+    //최종정리
+    GET_FINAL_INFO_SUCCESS : "최종 정리 뷰 라운드 별 정보 출력 성공",
 
     //DB
     DB_ERROR: "DB 오류"

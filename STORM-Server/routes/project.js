@@ -5,7 +5,7 @@ const projectController = require('../controller/projectController');
 
 router.post('/', projectController.createProject);
 router.post('/enter', projectController.memberEnterProject);
-router.get('/:user_idx', projectController.showAllProject);
+router.get('/user/:user_idx', projectController.showAllProject);
 router.get('/:project_idx', projectController.getProjectInfo);
 router.get('/enter/:project_idx', projectController.getProjectparticipant);
 router.delete('/:user_idx/:project_idx', projectController.deleteProjectparticipant);
