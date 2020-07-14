@@ -6,7 +6,7 @@ module.exports = {
         const query = `SELECT COUNT(*) FROM round WHERE project_idx = ${project_idx}`
         try {
             const result = await pool.queryParamArr(query, values);
-            return result[0]["COUNT(*)"];
+            return result[0]["COUNT(*)"]+1;
         } catch (err) {
             if (err.errno == 1062) {
                 console.log('signup ERROR : ', err.errno, err.code);
@@ -49,7 +49,7 @@ module.exports = {
         console.log(project_idx);
         try{
             const round_count = await pool.queryParam(query1);
-            const round_number = round_count[0]["COUNT(*)"]+1;
+            const round_number = round_count[0]["COUNT(*)"];
             
             const fields = `round_idx, round_number, round_purpose, round_time`;
             const query2 = `SELECT ${fields} FROM round WHERE project_idx = ${project_idx} AND round_number = ${round_number}`
@@ -88,21 +88,22 @@ module.exports = {
         }
     },
     roundMemberList: async(round_idx) => {
-        const query1 = `SELECT round_participant.user_idx FROM round_participant, round WHERE round_participant.round_idx = round.round_idx`;
+        //이거 오류있다.
+        const query1 = `SELECT rp.user_idx FROM round_participant rp JOIN round r ON r.round_idx = rp.round_idx WHERE r.round_idx = ${round_idx}`;
 
         try{
             const round_user = await pool.queryParam(query1);
-            console.log(round_user[0]["user_idx"])
            
             const array = [];
             for(var i=0; i< round_user.length; i++){
                 const query2 = `SELECT user_name, user_img FROM user WHERE user_idx = ${round_user[i]["user_idx"]}`;
                 const result2 = await pool.queryParam(query2)
                 var data = new Object();
-                data.user_name = result2[0].user_name
-                data.user_img = result2[0].user_img
+                data.user_name = result2[i].user_name
+                data.user_img = result2[i].user_img
                 array.push(data)
             }
+            console.log(array)
             return array
         }catch(err){
             console.log(err);

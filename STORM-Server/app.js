@@ -7,54 +7,40 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 
 var app = express();
-
-/*
-app.io = require(socket.io);
-
-let room = {};
-
 app.io = require('socket.io')();
+
 app.io.on('connection',(socket) => {
 
-  console.log("유저가 들어왔다.")
+  console.log(socket.id + "가 들어왔다.");
 
-  socket.on('createRoom', (code) => {
-    room.push(code);
-  })
-
-  // 요거 추가
   socket.on('joinRoom', (projectCode) => {
-
     const [roomCode, username] = projectCode;
-    //room.push(userName)
-    if(!room.hasOwnProperty(roomCode)){
       socket.join(roomCode, () => {
-        room[roomCode] = [];
-        room[roomCode].push(username);
-        app.io.to(socket.id).emit('roomState', room[roomCode]);
-
+        app.io.to(roomCode).emit('roomState', `${socket.id}`);
       });
-    } else {
-      room[roomCode].push(username);
-      app.io.to(socket.id).emit('roomState', room[roomCode]);
-
+  });
+  
+  socket.on('startProject', (roomCode) => {
+    try{
+      app.io.to(roomCode).emit('roomState', `이건?${socket.id}`);
+    }catch(err){
+      console.log(err);
     }
-    console.log('아무거나')
   });
 
-  // 요거 추가
-  socket.on('leaveRoom', (num, name) => {
-    socket.leave(room[num], () => {
-      app.io.to(room[num]).emit('leaveRoom', num, name);
+  socket.on('leave', (roomCode) => {
+    socket.leave(roomCode, () => {
+      app.io.to(roomCode).emit('leaveProject', "test")
     });
-  });
+  }); 
+  
 
   socket.on('disconnect', () => {
-    console.log('유저가 나갔다.');
+    console.log(socket.id+'나감.');
   });
+  
 });
 
-*/
 
 
   // view engine setup
