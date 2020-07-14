@@ -13,35 +13,49 @@ app.io.on('connection',(socket) => {
 
   console.log(socket.id + "가 들어왔다.");
 
+
+
+let room = {};
+
+app.io.on('connection',(socket) => {
+
+  console.log(socket.id + "가 들어왔다.");
+
   socket.on('joinRoom', (projectCode) => {
     const [roomCode, username] = projectCode;
+
       socket.join(roomCode, () => {
         app.io.to(roomCode).emit('roomState', `${socket.id}`);
       });
   });
+ 
+  
+ 
+  
   
   socket.on('startProject', (roomCode) => {
     try{
-      app.io.to(roomCode).emit('roomState', `이건?${socket.id}`);
+      for(i = 0; i<=room[roomCode].userList.length; i++){
+        app.io.to(room[roomCode].socketId[i]).emit('participantPOST');
+      }
     }catch(err){
       console.log(err);
     }
   });
+
+
 
   socket.on('leave', (roomCode) => {
     socket.leave(roomCode, () => {
       app.io.to(roomCode).emit('leaveProject', "test")
     });
   }); 
-  
 
   socket.on('disconnect', () => {
     console.log(socket.id+'나감.');
   });
   
 });
-
-
 
   // view engine setup
   app.set('views', path.join(__dirname, 'views'));

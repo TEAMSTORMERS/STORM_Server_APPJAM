@@ -175,6 +175,15 @@ module.exports = {
             }
             data1.card_list = card_list;
             array.push(data1)
+          
+        for(i = 0; i<project_idx.length; i++){
+            var project = new Object();
+            project.idx = project_idx[i].project_idx;
+            project_name = await ProjectDao.getProjectName(project.idx);
+            project.name = project_name[0].project_name;
+            project.card = await ProjectDao.getProjectCard(project.idx);
+            array.push(project);
+            console.log(project.card);
         }
 
         return res.status(statusCode.OK)
