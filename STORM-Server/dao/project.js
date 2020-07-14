@@ -97,10 +97,11 @@ module.exports = {
     },
 
     checkProjectParticipantIdx : async (user_idx, project_idx) => {
-        const query = `SELECT project_participant_idx FROM project_participant WHERE user_idx = ${user_idx} and project_idx = ${project_idx}`;
+        const query = `SELECT project_participant_idx FROM project_participant WHERE user_idx = ${user_idx} and project_idx = ${project_idx};`;
 
         try{
             const result = await pool.queryParamArr(query);
+            console.log(result);
             return result;
         } catch(err) {
             console.log('checkProjectParticipantIdx ERROR : ', err);
@@ -122,13 +123,14 @@ module.exports = {
 
     },
 
+
     checkHost : async (project_participant_idx) => {
         const query = `SELECT COUNT(*) FROM project_participant_host WHERE project_participant_idx = ${project_participant_idx}`;
 
         try{
             const result = pool.queryParamArr(query);
             const ifHost = result[0]["COUNT(*)"];
-            return isHost;
+            return ifHost;
 
         }catch(err){
             console.log('checkHost ERROR : ', err);
@@ -136,6 +138,7 @@ module.exports = {
         }
 
     },
+
 
     getProjectIdxName : async(user_idx) => {
         const query = `SELECT p.project_idx, p.project_name FROM project_participant pp JOIN project p ON pp.project_idx = p.project_idx WHERE pp.user_idx = ${user_idx}`;

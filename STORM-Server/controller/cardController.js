@@ -4,9 +4,15 @@ const resMessage = require('../modules/responseMessage');
 const CardDao = require('../dao/card');
 
 module.exports = {
-
     createCard : async (req, res) => {
-        const {user_idx, project_idx, round_idx, card_img, card_txt} = req.body;
+        const {user_idx, project_idx, round_idx, card_txt} = req.body;
+        var card_img;
+
+        //nil 거르는 방법 찾기
+        if(!card_txt || card_txt == "nil"){
+            card_img = req.file.location;
+            console.log(req.file);
+        }
 
         if(!user_idx || !project_idx || !round_idx || (!card_img && !card_txt)){
             res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));

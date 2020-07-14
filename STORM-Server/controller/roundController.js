@@ -20,20 +20,26 @@ module.exports = {
         if(count === -1) {
           return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.ROUND_COUNT_FAIL));
         }
-        
+
         res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_COUNT_SUCCESS, count));
         console.log(count);
     },
 
     roundSetting : async (req, res) => {
       const {project_idx, round_purpose, round_time} = req.body;
-      
+
+      console.log(project_idx);
+      console.log(round_purpose);
+      console.log(round_time);
+
       if(!project_idx || !round_purpose || !round_time){
           res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.ROUND_SETTING_FAIL));
       }
       const result = await RoundDao.roundSetting(project_idx, round_purpose, round_time);
       console.log(result);
+
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_SETTING_SUCCESS, req.body));
+
     },
 
     roundInfo: async (req, res) => {
@@ -46,7 +52,12 @@ module.exports = {
       
       const result = await RoundDao.roundInfo(project_idx);
       console.log(result);
-      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER, result));
+      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_USER, {
+        "round_idx" : result[0]["round_idx"],
+        "round_number" : result[0]["round_number"],
+        "round_purpose" : result[0]["round_purpose"],
+        "round_time" : result[0]["round_time"]
+      }));
     },
 
     roundEnter: async(req, res) => {
@@ -62,6 +73,7 @@ module.exports = {
       console.log('여기2');
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_ENTER_FAIL));
     },
+
     roundLeave: async(req, res) => {
       const {user_idx, round_idx} = req.body;
       console.log(req.body);
@@ -73,6 +85,7 @@ module.exports = {
       console.log('여기2');
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_FAIL));
     },
+
     roundParticipant: async(req, res) => {
       const round_idx = req.params.round_idx;
       if(!round_idx){
@@ -94,7 +107,9 @@ module.exports = {
       }
       const result = await RoundDao.roundCardList(project_idx, round_idx);
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
+
     },
+    
     roundFinalInfo: async(req, res) => {
       const project_idx = req.params.project_idx;
 

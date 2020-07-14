@@ -118,7 +118,12 @@ module.exports = {
 
         var result = await ProjectDao.getProjectInfo(project_idx);
         return res.status(statusCode.OK)
-        .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, result));
+        .send(util.success(statusCode.OK, resMessage.READ_PROJECT_INFO,{
+            "project_name" : result[0].project_name,
+            "project_comment" : result[0].project_comment,
+            "project_code" : result[0].project_code,
+        }
+        ));
     },
 
     deleteProjectparticipant : async(req, res) => {
@@ -133,22 +138,24 @@ module.exports = {
 
         // project_participant_idx 뽑아내기
         const result = await ProjectDao.checkProjectParticipantIdx(user_idx, project_idx);
-        const project_participant_idx = result[0].project_participant_idx;
+        const project_participant_idx = result[0]["project_participant_idx"];
 
         if(project_participant_idx === -1){
             res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_PROJECT_PARTICIPANT));  
             return;
         }
 
-        //삭제하기
-        const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
-
+        /*
         //만약 호스트일 경우 체크
         const ifHost = await ProjectDao.checkHost(project_participant_idx);
         if(ifHost === 1) {
             //방 안에 사람들이 더 있을 때 - 다른 사람에게 호스트를 넘김
             //방 안에 사람들이 없을 때 - 방이 터짐..?
         }
+        */
+
+        //삭제하기
+        const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
 
         //성공
         return res.status(statusCode.OK)
@@ -175,15 +182,6 @@ module.exports = {
             }
             data1.card_list = card_list;
             array.push(data1)
-          
-        for(i = 0; i<project_idx.length; i++){
-            var project = new Object();
-            project.idx = project_idx[i].project_idx;
-            project_name = await ProjectDao.getProjectName(project.idx);
-            project.name = project_name[0].project_name;
-            project.card = await ProjectDao.getProjectCard(project.idx);
-            array.push(project);
-            console.log(project.card);
         }
 
         return res.status(statusCode.OK)
@@ -194,7 +192,7 @@ module.exports = {
         console.log('test');
         const result = await ProjectDao.finalInfo(project_idx);
         return res.status(statusCode.OK)
-        .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, result));
+        .send(util.success(statusCode.OK, resMessage.GET_FINAL_INFO_SUCCESS, result));
     },
 
     finalScrapList: async(req, res) => {
