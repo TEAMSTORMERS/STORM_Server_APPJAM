@@ -73,7 +73,7 @@ module.exports = {
     },
 
     getProjectInfo : async (project_idx) => {
-        const query = `SELECT project_idx, project_name, project_comment, project_code FROM project WHERE project_idx = "${project_idx}"`;
+        const query = `SELECT project_name, project_comment, project_code FROM project WHERE project_idx = "${project_idx}"`;
         try{
             const result = await pool.queryParamArr(query);
             return result;
@@ -137,24 +137,13 @@ module.exports = {
 
     },
 
-    getProjectIdx : async(user_idx) => {
-        const query = `SELECT project_idx FROM project_participant WHERE user_idx = ${user_idx}`;
+    getProjectIdxName : async(user_idx) => {
+        const query = `SELECT p.project_idx, p.project_name FROM project_participant pp JOIN project p ON pp.project_idx = p.project_idx WHERE pp.user_idx = ${user_idx}`;
         try{
             const result = await pool.queryParam(query);
             return result;
         }catch (err){
             console.log('getProjectIdx ERROR : ', err);
-            throw err;
-        }
-    },
-
-    getProjectName : async(project_idx) => {
-        const query = `SELECT project_name FROM project WHERE project_idx = ${project_idx}`;
-        try{
-            const result = await pool.queryParam(query);
-            return result;
-        }catch (err){
-            console.log('getProjectName ERROR : ', err);
             throw err;
         }
     },
