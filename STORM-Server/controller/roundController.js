@@ -105,7 +105,7 @@ module.exports = {
         res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.ROUND_SETTING_FAIL));
       }
       const result = await RoundDao.roundCardList(project_idx, round_idx);
-      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ET_ROUND_CARD_LIST_SUCCESS, result));
+      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.GET_ROUND_CARD_LIST_SUCCESS, result));
     },
     
     roundFinalInfo: async(req, res) => {

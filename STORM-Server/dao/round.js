@@ -127,11 +127,10 @@ module.exports = {
             var array = [];
             for(var i=0; i< card_result.length;i++){
                 var data2 = new Object();
-                data2.card_idx =card_result[0]["card_idx"];
-                data2.card_img = card_result[0]["card_img"];
-                data2.card_txt = card_result[0]["card_txt"];
+                data2.card_idx =card_result[i]["card_idx"];
+                data2.card_img = card_result[i]["card_img"];
+                data2.card_txt = card_result[i]["card_txt"];
                 array.push(data2);
-                console.log(data2);
             };
             data.card_list = array
             console.log(data);

@@ -8,8 +8,7 @@ module.exports = {
         const {user_idx, project_idx, round_idx, card_txt} = req.body;
         var card_img;
 
-        //nil 거르는 방법 찾기
-        if(!card_txt || card_txt == "nil"){
+        if(!card_txt){
             card_img = req.file.location;
             console.log(req.file);
         }
