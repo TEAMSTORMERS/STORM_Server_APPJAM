@@ -9,21 +9,20 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.io = require('socket.io')();
 
-app.io.on('connection', (socket) => {
+
+app.io.on('connection',(socket) => {
 
   console.log(socket.id + "가 들어왔다.");
 
-  app.io.on('connection', (socket) => {
-
-    console.log(socket.id + "가 들어왔다.");
-
+  socket.on('joinRoom', (projectCode) => {
+    const [roomCode, username] = projectCode;
     socket.on('joinRoom', (projectCode) => {
       const [roomCode, username] = projectCode;
 
       socket.join(roomCode, () => {
         app.io.to(roomCode).emit('roomState', `${socket.id}`);
       });
-    });
+
 
     socket.on('startProject', (roomCode) => {
       try {

@@ -105,9 +105,9 @@ module.exports = {
                 const query2 = `SELECT user_name, user_img FROM user WHERE user_idx = ${round_user[i]["user_idx"]}`;
                 const result2 = await pool.queryParam(query2);
                 var data = new Object();
-                data.user_name = result2[0].user_name;
-                data.user_img = result2[0].user_img;
-                array.push(data);
+                data.user_name = result2[0].user_name
+                data.user_img = result2[0].user_img
+                array.push(data)
             }
             return array;
         }catch(err){
