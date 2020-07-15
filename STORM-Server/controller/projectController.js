@@ -212,6 +212,6 @@ module.exports = {
         const result = await ProjectDao.finalScarpList(user_idx, project_idx);
 
         return res.status(statusCode.OK)
-            .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, result));
+            .send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
     }
 }

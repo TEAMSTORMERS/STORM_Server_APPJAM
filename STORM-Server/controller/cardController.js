@@ -12,7 +12,6 @@ module.exports = {
 
         if (!card_txt) {
             card_img = req.file.location;
-            console.log(req.file);
         }
 
         if (!user_idx || !project_idx || !round_idx || (!card_img && !card_txt)) {
