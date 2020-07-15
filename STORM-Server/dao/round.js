@@ -119,7 +119,7 @@ module.exports = {
     //project_idx, round_idx를 받았을 때 round정보, card정보, project_name를 반환
     roundCardList: async (project_idx, round_idx) => {
         const query1 = `SELECT round_number, round_purpose, round_time FROM round WHERE round_idx = ${round_idx}`;
-        const query2 = `SELECT card_idx, card_img, card_txt FROM card WHERE round_idx = ${round_idx}`;
+        const query2 = `SELECT card_idx, card_img, card_txt, user_img FROM card JOIN user ON card.user_idx = user.user_idx WHERE round_idx = ${round_idx}`;
         const query3 = `SELECT project_name FROM project WHERE project_idx = ${project_idx}`;
 
         try {
@@ -138,10 +138,11 @@ module.exports = {
                 data2.card_idx = card_result[i]["card_idx"];
                 data2.card_img = card_result[i]["card_img"];
                 data2.card_txt = card_result[i]["card_txt"];
+                data2.user_img = card_result[i]["user_img"];
                 array.push(data2);
             };
             data.card_list = array;
-            return data
+            return data;
 
         } catch (err) {
             console.log('roundCardList ERROR : ', err);

@@ -18,14 +18,13 @@ module.exports = {
     },
 
     checkProjectCode: async (project_code) => {
-        const query = `SELECT project_code FROM project WHERE project_code = ${project_code}`;
+        const query = `SELECT project_code FROM project WHERE project_code = "${project_code}"`;
         try{
             const result = await pool.queryParam(query);
             return result;
         }catch(err){
             console.log(err)
         }
-        
     },
 
     //project_code를 받았을 때 project_idx를 반환
