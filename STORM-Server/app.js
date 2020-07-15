@@ -9,13 +9,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.io = require('socket.io')();
 
-app.io.on('connection',(socket) => {
 
-  console.log(socket.id + "가 들어왔다.");
-
-
-
-let room = {};
 
 app.io.on('connection',(socket) => {
 
@@ -30,10 +24,7 @@ app.io.on('connection',(socket) => {
   });
  
   
- 
-  
-  
-  socket.on('startProject', (roomCode) => {
+   socket.on('startProject', (roomCode) => {
     try{
       for(i = 0; i<=room[roomCode].userList.length; i++){
         app.io.to(room[roomCode].socketId[i]).emit('participantPOST');

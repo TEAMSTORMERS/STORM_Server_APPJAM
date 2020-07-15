@@ -99,8 +99,8 @@ module.exports = {
                 const query2 = `SELECT user_name, user_img FROM user WHERE user_idx = ${round_user[i]["user_idx"]}`;
                 const result2 = await pool.queryParam(query2)
                 var data = new Object();
-                data.user_name = result2[i].user_name
-                data.user_img = result2[i].user_img
+                data.user_name = result2[0].user_name
+                data.user_img = result2[0].user_img
                 array.push(data)
             }
             console.log(array)
@@ -109,6 +109,7 @@ module.exports = {
             console.log(err);
         }
     },
+
     roundCardList: async(project_idx, round_idx) => {
         const query1 = `SELECT round_number, round_purpose, round_time FROM round WHERE round_idx = ${round_idx}`;
         const query2 = `SELECT card_idx, card_img, card_txt FROM card WHERE round_idx = ${round_idx}`;

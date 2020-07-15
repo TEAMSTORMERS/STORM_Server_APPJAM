@@ -26,6 +26,10 @@ module.exports = {
     //프로젝트
     CREATED_PROJECT_SUCCESS: "프로젝트 생성 성공",
     CREATED_PROJECT_FAIL : "프로젝트 생성 실패",
+
+    //프로젝트 코드 중복체크
+    CHECK_PROJECT_CODE_FAIL: "프로젝트 코드가 중복됩니다.", 
+
     CANNOT_JOIN : "이미 프로젝트가 진행중입니다.",
     JOIN_PROJECT_SUCCESS: "프로젝트 참여 성공",
     JOIN_PROJECT_FAIL : "프로젝트 참여 실패",

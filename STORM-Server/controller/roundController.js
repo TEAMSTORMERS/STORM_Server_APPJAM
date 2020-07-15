@@ -69,7 +69,7 @@ module.exports = {
         console.log('여기3');
         res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.ROUND_LEAVE_SUCCESS));
       }
-        const result = await RoundDao.roundEnter(user_idx, round_idx);
+        const result = await RoundDao.roundLeave(user_idx, round_idx);
       console.log('여기2');
       res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_FAIL));
     },

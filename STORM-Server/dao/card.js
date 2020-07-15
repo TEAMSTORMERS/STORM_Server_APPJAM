@@ -89,15 +89,31 @@ module.exports = {
 
     showCard : async(user_idx, card_idx) => {
         //card_idx의 user_idx와 scrap_idx의 user_idx는 다르다. 이 점을 유의해서 다시 작성할 것
-        const query = `SELECT c.card_idx, c.card_img, c.card_txt, m.memo_content, u.user_img, count(s.scrap_idx) AS scrap_flag
-                       FROM memo AS m JOIN scrap AS s ON m.card_idx = s.card_idx
-                       JOIN card AS c ON c.card_idx = s.card_idx
-                       JOIN user AS u ON s.user_idx = u.user_idx
-                       WHERE m.user_idx = u.user_idx AND u.user_idx = ${user_idx} AND c.card_idx = ${card_idx}`;
+        const query1 = `SELECT c.card_idx, c.card_img, c.card_txt, u.user_img 
+        FROM card c JOIN user u ON c.user_idx = u.user_idx 
+        WHERE c.card_idx = ${card_idx}`;
+        
+        const query2 = `SELECT m.memo_content FROM memo m JOIN card c ON m.user_idx = ${user_idx} AND c.card_idx = ${card_idx}`;
+
+        const query3 = `SELECT count(s.scrap_idx) AS scrap_flag FROM scrap s JOIN card c ON s.card_idx = c.card_idx WHERE s.user_idx = ${user_idx} AND s.card_idx = ${card_idx}`;
 
         try{
-            const result = await pool.queryParam(query);
-            return result;
+            const result1 = await pool.queryParam(query1);
+            const result2 = await pool.queryParam(query2);
+            const result3 = await pool.queryParam(query3)
+            var data = new Object();
+            data.card_idx = result1[0]["card_idx"]
+            data.card_img = result1[0]["card_img"]
+            data.card_txt = result1[0]["card_txt"]
+            if(result2[0]){
+                data.memo_content = result2[0]["memo_content"]
+            }
+            else{
+                data.memo_content = null
+            }
+            data.user_img = result1[0]["user_img"]
+            data.scrap_flag = result3[0]["scrap_flag"]
+            return data;
         }catch(err){
             console.log('createMemo ERROR : ', err);
             throw err;
