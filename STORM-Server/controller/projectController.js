@@ -187,8 +187,11 @@ module.exports = {
                 card_list.push(data2);
             }
             data1.card_list = card_list;
-            array.push(data1)
+            array.push(data1);
         }
+
+        return res.status(statusCode.OK)
+            .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
     },
 
 
