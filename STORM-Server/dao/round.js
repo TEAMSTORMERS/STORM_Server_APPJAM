@@ -81,7 +81,7 @@ module.exports = {
 
     //user_idx, round_idx를 받았을 때 round_participant의 해당하는 row 삭제
     roundLeave: async (user_idx, round_idx) => {
-        const query = `DELETE * FROM round_participant WHERE user_idx = ${user_idx} AND round_idx = ${round_idx}`;
+        const query = `DELETE FROM round_participant WHERE user_idx = ${user_idx} AND round_idx = ${round_idx}`;
         try {
             const result = await pool.queryParam(query);
             return result;
@@ -91,28 +91,26 @@ module.exports = {
         }
     },
 
-    //고치기
     //round_idx를 받았을 때 user_idx를 반환
-    roundMemberList: async (round_idx) => {
-        const query1 = `SELECT round_participant.user_idx
-                        FROM round_participant, round
-                        WHERE round_participant.round_idx = round.round_idx`;
+    roundMemberList: async(round_idx) => {
+        const query1 = `SELECT rp.user_idx
+                        FROM round_participant rp JOIN round r ON r.round_idx = rp.round_idx
+                        WHERE r.round_idx = ${round_idx}`;
 
-        try {
+        try{
             const round_user = await pool.queryParam(query1);
-            console.log(round_user[0]["user_idx"]);
-
+           
             const array = [];
-            for (var i = 0; i < round_user.length; i++) {
+            for(var i=0; i< round_user.length; i++){
                 const query2 = `SELECT user_name, user_img FROM user WHERE user_idx = ${round_user[i]["user_idx"]}`;
-                const result2 = await pool.queryParam(query2)
+                const result2 = await pool.queryParam(query2);
                 var data = new Object();
                 data.user_name = result2[0].user_name;
                 data.user_img = result2[0].user_img;
                 array.push(data);
             }
             return array;
-        } catch (err) {
+        }catch(err){
             console.log('roundMemberList ERROR : ', err);
             console.log(err);
         }

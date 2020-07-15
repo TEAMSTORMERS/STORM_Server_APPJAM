@@ -126,7 +126,7 @@ module.exports = {
                 "project_comment": result[0].project_comment,
                 "project_code": result[0].project_code,
             }
-            ));
+        ));
     },
 
     //프로젝트 나가기 - project_participant에서 해당 user 정보 삭제

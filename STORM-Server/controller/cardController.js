@@ -63,7 +63,7 @@ module.exports = {
         }
 
         //scrap 삭제하기
-        var result = await CardDao.deletescrap(scrap_idx[0].scrap_idx);
+        var result = await CardDao.deletescrap(scrap_idx[0]["scrap_idx"]);
 
         //성공
         return res.status(statusCode.OK)
@@ -79,7 +79,7 @@ module.exports = {
             return;
         }
 
-        const memo_idx = await CardDao.createMemo(card_idx, user_idx, memo_content);
+        const memo_idx = await CardDao.createMemo(user_idx, card_idx, memo_content);
         if (memo_idx === -1) {
             return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }
@@ -96,7 +96,7 @@ module.exports = {
             return;
         }
 
-        const result = await CardDao.updateMemo(card_idx, user_idx, memo_content);
+        const result = await CardDao.updateMemo(user_idx, card_idx, memo_content);
         if (result === -1) {
             return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }

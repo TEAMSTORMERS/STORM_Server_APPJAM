@@ -95,7 +95,7 @@ module.exports = {
     //user_idx, card_idx 받아와서 카드 상세보기에 있는 정보 모두 반환
     showCard: async (user_idx, card_idx) => {
         //card_idx의 user_idx와 scrap_idx의 user_idx는 다르다. 이 점을 유의해서 다시 작성할 것
-        const query = `SELECT c.card_idx, c.card_img, c.card_txt, m.memo_content, u.user_img, count(s.scrap_idx) AS scrap_flag
+        const query = `SELECT c.card_idx, c.card_img, c.card_txt, m.memo_content, u.user_img, COUNT(*) AS scrap_flag
                        FROM memo AS m JOIN scrap AS s ON m.card_idx = s.card_idx
                        JOIN card AS c ON c.card_idx = s.card_idx
                        JOIN user AS u ON s.user_idx = u.user_idx

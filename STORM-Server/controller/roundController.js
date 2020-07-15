@@ -74,7 +74,7 @@ module.exports = {
     if (!user_idx || !round_idx) {
       res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.ROUND_SETTING_FAIL));
     }
-    const result = await RoundDao.roundEnter(user_idx, round_idx);
+    const result = await RoundDao.roundLeave(user_idx, round_idx);
 
     res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS));
   },
@@ -89,7 +89,7 @@ module.exports = {
 
     const result = await RoundDao.roundMemberList(round_idx);
 
-    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS, result));
+    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_MEMBERLIST_SUCCESS, result));
   },
 
   //라운드 카드 리스트 - 해당 라운드의 카드 전체 출력
@@ -112,6 +112,6 @@ module.exports = {
 
     const result = await RoundDao.roundFinalInfo(project_idx);
 
-    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS, result));
+    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
   }
 }
