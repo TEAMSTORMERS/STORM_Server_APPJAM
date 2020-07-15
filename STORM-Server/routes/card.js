@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const cardController = require('../controller/cardController');
-const card = require('../dao/card');
 const upload = require('../modules/multer');
 //const AuthMiddleware = require('../middlewares/auth');
 
