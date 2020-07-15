@@ -228,7 +228,6 @@ module.exports = {
             const data2 = new Object();
             data2.project_name = query1_result[0]["project_name"];
             data2.scrap_count = query1_result[0]["scrap_count"];
-            data2.scrap_count = query2_result.length;
             data2.card_item = array;
             return data2;
 
