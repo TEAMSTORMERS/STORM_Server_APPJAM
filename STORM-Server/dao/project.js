@@ -203,27 +203,35 @@ module.exports = {
 
     //user_idx, project_idx를 받았을 때 project_name, card_idx, card_img, card_txt를 반환
     finalScarpList: async (user_idx, project_idx) => {
-        const query1 = `SELECT p.project_name, c.card_idx, c.card_img, c.card_txt
-                        FROM project AS p JOIN card AS c ON p.project_idx = c.project_idx JOIN scrap AS s ON c.card_idx = s.card_idx
-                        WHERE p.project_idx = ${project_idx} AND s.user_idx = ${user_idx}`;
+        const query1 = `SELECT project_name, COUNT(scrap_idx) AS scrap_count
+                        FROM project JOIN card ON project.project_idx = card.project_idx JOIN scrap ON scrap.card_idx = card.card_idx
+                        WHERE project.project_idx = ${project_idx} AND scrap.user_idx = ${user_idx};`;
+        
+        const query2 = `SELECT card.card_idx, card.card_img, card.card_txt
+                        FROM project JOIN card ON project.project_idx = card.project_idx JOIN scrap ON scrap.card_idx = card.card_idx
+                        WHERE project.project_idx = ${project_idx} AND scrap.user_idx = ${user_idx};`
+        
         try {
             const query1_result = await pool.queryParam(query1);
+            const query2_result = await pool.queryParam(query2);
 
             const array = [];
-
-            for (var i = 0; i < query1_result.length; i++) {
+            
+            for (var i = 0; i < query1_result[0]["scrap_count"]; i++) {
                 const data = new Object();
-                data.card_idx = query1_result[i]["card_idx"];
-                data.card_img = query1_result[i]["card_img"];
-                data.card_txt = query1_result[i]["card_txt"];
+                data.card_idx = query2_result[i]["card_idx"];
+                data.card_img = query2_result[i]["card_img"];
+                data.card_txt = query2_result[i]["card_txt"];
                 array.push(data);
             }
-
+            
             const data2 = new Object();
             data2.project_name = query1_result[0]["project_name"];
-            data2.scrap_count = query1_result.length;
+            data2.scrap_count = query1_result[0]["scrap_count"];
+            data2.scrap_count = query2_result.length;
             data2.card_item = array;
             return data2;
+
         } catch (err) {
             console.log('finalScarpList ERROR : ', err);
             throw err;
