@@ -34,12 +34,6 @@ module.exports = {
         //랜덤 코드가 현재 사용중인 코드와 겹치지는 않는지 확인하는 과정 필요함
         //프로젝트 종료 후 랜덤 코드 삭제하는 방법은 어때?
 
-        const checkCode = await ProjectDao.checkProjectCode(project_code);
-        if(checkCode){
-            createProject(project_code)
-            return;
-        }
-
         //예외처리2 : project_idx가 제대로 생성되었는지 확인
         const result = await ProjectDao.createProject(project_name, project_comment, project_code, project_date);
         const projectIdx = result.insertId;
@@ -198,6 +192,9 @@ module.exports = {
             data1.card_list = card_list;
             array.push(data1)
         }
+        return res.status(statusCode.OK)
+            .send(util.success(statusCode.OK, resMessage.SHOW_PROJECT_LIST_SUCCESS, result));
+        
     },
 
 
@@ -220,5 +217,13 @@ module.exports = {
 
         return res.status(statusCode.OK)
             .send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
+    },
+    statusProject: async (req, res) => {
+        const project_idx = req.params.project_idx;
+
+        const result = await ProjectDao.statusProject(project_idx);
+        
+        return res.status(statusCode.OK)
+            .send(util.success(statusCode.OK, resMessage.PROJECT_STATUS_SUCCESS, result));
     }
 }
