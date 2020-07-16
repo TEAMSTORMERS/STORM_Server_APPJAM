@@ -24,7 +24,7 @@ module.exports = {
             return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }
 
-        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_CARD));
+        res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.CREATED_CARD, createCard));
     },
 
     //카드 스크랩
