@@ -42,6 +42,7 @@ module.exports = {
     DELETE_PROJECT_PARTICIPANT_FAIL : "프로젝트 참여자 목록에서 삭제 실패",
     NO_PROJECT_PARTICIPANT : "해당 프로젝트에 참여하고 있는 유저가 아닙니다.",
     GET_PROJECT_LIST_SUCCESS : "참여한 프로젝트의 리스트 조회 성공",
+    UPDATE_PROJECT_STATUS_SUCCESS : "프로젝트 상태 변경 성공",
 
     //라운드
     ROUND_COUNT_SUCCESS: "라운드 카운트 정보 출력 성공",
