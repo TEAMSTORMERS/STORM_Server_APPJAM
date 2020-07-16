@@ -103,7 +103,6 @@ module.exports = {
   //   }
 
   //   const result = await RoundDao.roundInfo(project_idx);
-
   //   res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.GET_ROUND_INFO_SUCCESS, {
   //     "round_idx": result[0]["round_idx"],
   //     "round_number": result[0]["round_number"],

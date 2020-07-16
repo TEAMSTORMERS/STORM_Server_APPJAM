@@ -99,6 +99,7 @@ module.exports = {
         }));
     },
 
+    /*
     //프로젝트의 참여자 목록 반환
     getProjectparticipant: async (req, res) => {
         const project_idx = req.params.project_idx;
@@ -149,14 +150,14 @@ module.exports = {
             return;
         }
 
-        /*
+        
         //만약 호스트일 경우 체크
         const ifHost = await ProjectDao.checkHost(project_participant_idx);
         if(ifHost === 1) {
             //방 안에 사람들이 더 있을 때 - 다른 사람에게 호스트를 넘김
             //방 안에 사람들이 없을 때 - 방이 터짐..?
         }
-        */
+        
 
         //위의 조건들을 모두 체크 후 삭제하기
         const fin = await ProjectDao.deleteProjectparticipant(project_participant_idx);
@@ -165,6 +166,7 @@ module.exports = {
         return res.status(statusCode.OK)
             .send(util.success(statusCode.OK, resMessage.DELETE_PROJECT_PARTICIPANT_SUCCESS));
     },
+    */
 
 
     //참여한 프로젝트 이름과 카드 반환
