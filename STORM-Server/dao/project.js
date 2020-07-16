@@ -245,5 +245,15 @@ module.exports = {
             console.log('finalScarpList ERROR : ', err);
             throw err;
         }
+    },
+    statusProject: async(project_idx) => {
+        const query = `UPDATE project SET project_status = -1 WHERE project_idx = ${project_idx}`;
+        try{
+            const result = await pool.queryParam(query);
+            return result
+        }catch(err){
+            console.log('finalScarpList ERROR : ', err);
+            throw err;
+        }
     }
 }

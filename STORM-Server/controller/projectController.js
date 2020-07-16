@@ -31,6 +31,7 @@ module.exports = {
         }
         const project_date = year+"."+month+"."+day;
 
+
         //예외처리2 : project_idx가 제대로 생성되었는지 확인
         const result = await ProjectDao.createProject(project_name, project_comment, project_code, project_date);
         const projectIdx = result.insertId;
@@ -214,5 +215,13 @@ module.exports = {
 
         return res.status(statusCode.OK)
             .send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
+    },
+    statusProject: async (req, res) => {
+        const project_idx = req.params.project_idx;
+
+        const result = await ProjectDao.statusProject(project_idx);
+        
+        return res.status(statusCode.OK)
+            .send(util.success(statusCode.OK, resMessage.PROJECT_STATUS_SUCCESS, result));
     }
 }
