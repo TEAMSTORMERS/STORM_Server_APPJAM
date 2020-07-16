@@ -99,7 +99,7 @@ module.exports = {
         }));
     },
 
-    /*
+    
     //프로젝트의 참여자 목록 반환
     getProjectparticipant: async (req, res) => {
         const project_idx = req.params.project_idx;
@@ -166,7 +166,7 @@ module.exports = {
         return res.status(statusCode.OK)
             .send(util.success(statusCode.OK, resMessage.DELETE_PROJECT_PARTICIPANT_SUCCESS));
     },
-    */
+    
 
 
     //참여한 프로젝트 이름과 카드 반환
@@ -218,6 +218,7 @@ module.exports = {
         return res.status(statusCode.OK)
             .send(util.success(statusCode.OK, resMessage.ROUND_FINALINFO_SUCCESS, result));
     },
+    
     statusProject: async (req, res) => {
         const project_idx = req.params.project_idx;
 
