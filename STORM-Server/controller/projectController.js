@@ -225,6 +225,6 @@ module.exports = {
         const result = await ProjectDao.statusProject(project_idx);
         
         return res.status(statusCode.OK)
-            .send(util.success(statusCode.OK, resMessage.PROJECT_STATUS_SUCCESS, result));
+            .send(util.success(statusCode.OK, resMessage.UPDATE_PROJECT_STATUS_SUCCESS));
     }
 }

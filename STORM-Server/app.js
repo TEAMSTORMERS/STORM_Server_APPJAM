@@ -14,13 +14,40 @@ app.io.on('connection',(socket) => {
 
   console.log(socket.id + "가 들어왔다.");
 
+  socket.on('joinRoom', (roomCode) => {
+    socket.join(roomCode, () => {
+      console.log(socket.id);
+      app.io.to(roomCode).emit('roomState', socket.id);
+    });
+  });
+
+    socket.on('roundSetting', (roomCode) => {
+      app.io.to(roomCode).emit('roundcomplete', '잘되나');
+    });
+
+    socket.on('leave', (roomCode) => {
+      socket.leave(roomCode, () => {
+        app.io.to(roomCode).emit('leaveProject', "test")
+      });
+    });
+
+    socket.on('disconnect', () => {
+      console.log(socket.id + '나감.');
+    });
+
+});
+
+/*
+app.io.on('connection', (socket) => {
+
+  console.log(socket.id + "가 들어왔다.");
+
   socket.on('joinRoom', (projectCode) => {
     const [roomCode, username] = projectCode;
 
-      socket.join(roomCode, () => {
-        app.io.to(roomCode).emit('roomState', `${socket.id}`);
-      });
-
+    socket.join(roomCode, () => {
+      app.io.to(roomCode).emit('roomState', `${socket.id}`);
+    });
 
     socket.on('startProject', (roomCode) => {
       try {
@@ -43,6 +70,8 @@ app.io.on('connection',(socket) => {
     });
   });
 });
+*/
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
