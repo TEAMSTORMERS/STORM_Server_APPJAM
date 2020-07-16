@@ -34,7 +34,8 @@ module.exports = {
 
             const value = [round_number, round_purpose, round_time, project_idx];
             const result = await pool.queryParamArr(query2, value);
-            return result;
+            const insertId = result.insertId;
+            return insertId;
         } catch (err) {
             if (err.errno == 1062) {
                 console.log('signup ERROR : ', err.errno, err.code);

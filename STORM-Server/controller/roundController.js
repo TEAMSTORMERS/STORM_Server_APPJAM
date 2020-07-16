@@ -130,7 +130,7 @@ module.exports = {
 
     const result = await RoundDao.roundSetting(project_idx, round_purpose, round_time);
 
-    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_SETTING_SUCCESS));
+    res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_SETTING_SUCCESS, result));
   },
 
   //라운드 정보 출력
