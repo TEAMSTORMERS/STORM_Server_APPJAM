@@ -16,8 +16,6 @@ app.io.on('connection',(socket) => {
 
   socket.on('joinRoom', (projectCode) => {
     const [roomCode, username] = projectCode;
-    socket.on('joinRoom', (projectCode) => {
-      const [roomCode, username] = projectCode;
 
       socket.join(roomCode, () => {
         app.io.to(roomCode).emit('roomState', `${socket.id}`);
