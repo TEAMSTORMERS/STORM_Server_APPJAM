@@ -27,7 +27,7 @@
 <br>
 
 ## ⚡️기능명세서
-추후 추가 예정
+[📄기능명세서](https://docs.google.com/spreadsheets/d/1a4JL1O6FLVjjnCx7rg4781ici10yg-ZGDMqT5empflk/edit#gid=686412120)
 
 <br>
 
