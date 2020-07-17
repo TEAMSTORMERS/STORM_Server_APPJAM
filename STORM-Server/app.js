@@ -41,6 +41,10 @@ app.io.on('connection',(socket) => {
       status[roomCode] = true;
       app.io.to(roomCode).emit('roundComplete');
     });
+  
+    socket.on('roundStartHost', (roomCode) => {
+      app.io.to(roomCode).emit('roundStartMember', '라운드 시작');
+    });
     
     socket.on('nextRound', (roomCode) => {
       status[roomCode] = false;
