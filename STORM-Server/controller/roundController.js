@@ -64,19 +64,22 @@ module.exports = {
     res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_ENTER_SUCCESS));
   },
 
-  /*
+  
   //라운드 나가기 - round_participant에서 user 정보 삭제
   roundLeave: async (req, res) => {
-  const { user_idx, round_idx } = req.body;
+  const user_idx = req.params.user_idx;
+  const round_idx = req.params.round_idx;
+  
+  console.log(user_idx, round_idx);
 
   if (!user_idx || !round_idx) {
     res.status(statusCode.BAD_REQUEST).send(util.fail(statusCode.BAD_REQUEST, resMessage.ROUND_SETTING_FAIL));
   }
-  const result = await RoundDao.roundEnter(user_idx, round_idx);
+  const result = await RoundDao.roundLeave(user_idx, round_idx);
 
   res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_LEAVE_SUCCESS));
   },
-  */
+  
 
   //라운드 참여자 목록 조회 - round_participant 정보 출력
   roundParticipant: async (req, res) => {
