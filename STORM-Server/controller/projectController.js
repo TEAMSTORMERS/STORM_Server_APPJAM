@@ -75,8 +75,14 @@ module.exports = {
 
         //예외처리2 : project_idx를 제대로 받아왔는지 확인
         const result = await ProjectDao.checkProjectIdx(project_code);
-        const project_idx = result[0].project_idx;
-        if (project_idx === -1) {
+        let project_idx;
+        try{
+            project_idx = result[0].project_idx;
+        }catch{
+            return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
+        }
+
+        if (project_idx === undefined) {
             return res.status(statusCode.DB_ERROR).send(util.fail(statusCode.DB_ERROR, resMessage.DB_ERROR));
         }
 
