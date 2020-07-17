@@ -92,6 +92,9 @@ module.exports = {
     //최종정리
     GET_FINAL_INFO_SUCCESS : "최종 정리 뷰 라운드 별 정보 출력 성공",
 
+    //프로젝트 상태 변경
+    PROJECT_STATUS_SUCCESS: "프로젝트 상태 변경 성공",
+
     //DB
     DB_ERROR: "DB 오류"
 };

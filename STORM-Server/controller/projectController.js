@@ -193,8 +193,7 @@ module.exports = {
             array.push(data1)
         }
         return res.status(statusCode.OK)
-            .send(util.success(statusCode.OK, resMessage.SHOW_PROJECT_LIST_SUCCESS, result));
-        
+            .send(util.success(statusCode.OK, resMessage.GET_PROJECT_LIST_SUCCESS, array));
     },
 
 
@@ -224,6 +223,6 @@ module.exports = {
         const result = await ProjectDao.statusProject(project_idx);
         
         return res.status(statusCode.OK)
-            .send(util.success(statusCode.OK, resMessage.PROJECT_STATUS_SUCCESS, result));
+            .send(util.success(statusCode.OK, resMessage.PROJECT_STATUS_SUCCESS));
     }
 }

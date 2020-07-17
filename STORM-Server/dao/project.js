@@ -249,7 +249,7 @@ module.exports = {
         }
     },
     statusProject: async(project_idx) => {
-        const query = `UPDATE project SET project_status = -1 WHERE project_idx = ${project_idx}`;
+        const query = `UPDATE project SET project_status = 1 WHERE project_idx = ${project_idx}`;
         try{
             const result = await pool.queryParam(query);
             return result

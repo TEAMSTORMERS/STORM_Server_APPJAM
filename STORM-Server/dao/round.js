@@ -52,7 +52,7 @@ module.exports = {
         try {
             const round_count = await pool.queryParam(query1);
             const round_number = round_count[0]["COUNT(*)"];
-
+            
             const fields = `round_idx, round_number, round_purpose, round_time`;
             const query2 = `SELECT ${fields} FROM round WHERE project_idx = ${project_idx} AND round_number = ${round_number}`
             const result = await pool.queryParam(query2);
