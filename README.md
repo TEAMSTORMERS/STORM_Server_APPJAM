@@ -1,6 +1,6 @@
 # ⚡️🌪STORM SERVER🌪⚡️
 
-![대지 1](https://user-images.githubusercontent.com/55133871/87728378-e45a5500-c7fd-11ea-8e5d-6ba3fb51c798.png)
+![logo](https://user-images.githubusercontent.com/55133871/87791062-9d5f7480-c87c-11ea-87dc-37e7843cf4a2.png)
 
 <b>실시간 브레인스토밍 협업 플랫폼 - STORM</b>
 > STORM은 효율적인 아이디어 회의를 돕는 온라인 툴이자 브레인스토밍을 함께하는 서비스입니다.
