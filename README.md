@@ -2,6 +2,10 @@
 
 <img src = "https://user-images.githubusercontent.com/55133871/87793056-b0277880-c87f-11ea-9f5a-62bcb3054a31.gif" width = "100%">
 
+<img src = "https://user-images.githubusercontent.com/55133871/87793832-c41faa00-c880-11ea-96c9-4b85d248149e.png" width = "20%">
+
+
+
 <b>실시간 브레인스토밍 협업 플랫폼 - STORM</b>
 > STORM은 효율적인 아이디어 회의를 돕는 온라인 툴이자 브레인스토밍을 함께하는 서비스입니다.
 <br> 라운드마다 목표와 제한 시간을 설정해 각자 아이디어를 고민해보고,
