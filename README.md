@@ -24,6 +24,12 @@
 
 <br>
 
+## ⚡️Work Flow
+
+![flow2](https://user-images.githubusercontent.com/55133871/87826346-b1729880-c8b3-11ea-9411-f22c37e86829.png)
+
+<br>
+
 ## ⚡️Main Function
 #### 1. 프로젝트 추가 및 참여하기
 > 사용자는 새로운 프로젝트를 만들거나, 참여코드를 입력하여 기존 프로젝트에 참여할 수 있습니다.
