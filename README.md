@@ -1,21 +1,18 @@
 # ⚡️🌪STORM SERVER🌪⚡️
 
-![logo](https://user-images.githubusercontent.com/55133871/87791062-9d5f7480-c87c-11ea-87dc-37e7843cf4a2.png)
+![storm](https://user-images.githubusercontent.com/55133871/87793056-b0277880-c87f-11ea-9f5a-62bcb3054a31.gif)
 
 <b>실시간 브레인스토밍 협업 플랫폼 - STORM</b>
 > STORM은 효율적인 아이디어 회의를 돕는 온라인 툴이자 브레인스토밍을 함께하는 서비스입니다.
 <br> 라운드마다 목표와 제한 시간을 설정해 각자 아이디어를 고민해보고,
 <br> 각 라운드 후에는 팀원들이 함께 의견을 나눌 수 있습니다.
 <br> 프로젝트가 끝난 뒤에는 최종 정리를 통해 라운드 및 카드 목록을 한눈에 볼 수 있으며,
-<br> 좋은 아이디어 카드들은 따로 스크랩해 모아볼 수 있습니다.<br>
+<br> 좋은 아이디어 카드들은 따로 스크랩해 모아볼 수 있습니다.<br><br>
 
 <br>
 
 개발 기간 : 2020-06-30~2020-07-18 <br>
 [📄API 명세서](https://github.com/TEAMSTORMERS/STORM_Server/wiki)<br><br>
-
-
-![1](https://user-images.githubusercontent.com/55133871/87787230-3fc82980-c876-11ea-978f-476016adc7c2.png)
 
 <br>
 
