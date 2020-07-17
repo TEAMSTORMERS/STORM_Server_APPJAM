@@ -4,6 +4,12 @@
 
 <img src = "https://user-images.githubusercontent.com/55133871/87793832-c41faa00-c880-11ea-96c9-4b85d248149e.png" width = "20%">
 
+![npm_bedge](https://img.shields.io/badge/STORM-STORMER-EC6565)
+![node_badge](https://img.shields.io/badge/node-%3E%3D%2012.0.0-F5CA6E)
+![npm_bedge](https://img.shields.io/badge/npm-v6.12.0-866DC9)
+
+<br>
+
 
 
 <b>실시간 브레인스토밍 협업 플랫폼 - STORM</b>
