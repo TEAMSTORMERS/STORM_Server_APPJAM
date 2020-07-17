@@ -154,11 +154,11 @@ module.exports = {
     //project_idx를 받았을 때 round정보, card정보, project_name를 반환
     roundFinalInfo: async (project_idx) => {
         try {
-            const query1 = `SELECT round_number, round_purpose, round_time
+            const query1 = `SELECT round_idx, round_number, round_purpose, round_time
                             FROM round r JOIN project p ON r.project_idx = p.project_idx
                             WHERE p.project_idx = ${project_idx}`;
 
-            const result = await pool.queryParam(query1)
+            const result = await pool.queryParam(query1);
             var array = [];
 
             for (var i = 0; i < result.length; i++) {
@@ -170,6 +170,7 @@ module.exports = {
                 const result2 = await pool.queryParam(query2);
 
                 var data = new Object();
+                data.round_idx = result[i]["round_idx"];
                 data.round_number = result[i]["round_number"];
                 data.round_purpose = result[i]["round_purpose"];
                 data.round_time = result[i]["round_time"];
