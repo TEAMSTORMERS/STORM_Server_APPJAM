@@ -24,6 +24,11 @@
 
 <br>
 
+## ⚡️About STORM
+![브랜딩](https://user-images.githubusercontent.com/55133871/87826675-42e20a80-c8b4-11ea-9532-7826df649ea0.png)
+
+<br>
+
 ## ⚡️Work Flow
 
 ![flow2](https://user-images.githubusercontent.com/55133871/87826346-b1729880-c8b3-11ea-9411-f22c37e86829.png)
