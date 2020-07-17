@@ -50,6 +50,7 @@
 [📄기능명세서](https://docs.google.com/spreadsheets/d/1a4JL1O6FLVjjnCx7rg4781ici10yg-ZGDMqT5empflk/edit#gid=686412120)
 
 <br>
+<br>
 
 ## ⚡️ER Diagram
 ![erd](https://user-images.githubusercontent.com/55133871/87429972-81ab6280-c61f-11ea-9679-d6ed564b2dbd.png)
@@ -83,11 +84,13 @@
 ```
 
 <br>
+<br>
 
 ## ⚡️Developers
 * [장세영](https://github.com/Say-young) <br>
 * [조충범](https://github.com/cndqjacndqja)<br>
 
+<br>
 <br>
 
 ## ⚡️Team Role
