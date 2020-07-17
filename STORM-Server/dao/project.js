@@ -18,14 +18,13 @@ module.exports = {
     },
 
     checkProjectCode: async (project_code) => {
-        const query = `SELECT project_code FROM project WHERE project_code = ${project_code}`;
+        const query = `SELECT project_code FROM project WHERE project_code = "${project_code}"`;
         try{
             const result = await pool.queryParam(query);
             return result;
         }catch(err){
             console.log(err)
         }
-        
     },
 
     //project_code를 받았을 때 project_idx를 반환
@@ -239,7 +238,6 @@ module.exports = {
             const data2 = new Object();
             data2.project_name = query1_result[0]["project_name"];
             data2.scrap_count = query1_result[0]["scrap_count"];
-            data2.scrap_count = query2_result.length;
             data2.card_item = array;
             return data2;
 
