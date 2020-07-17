@@ -45,9 +45,12 @@
 ![menuTree](https://user-images.githubusercontent.com/55133871/87768757-97a36800-c857-11ea-89fa-07c37e3815c7.png)
 
 <br>
+<br>
 
 ## ⚡️ER Diagram
 ![erd](https://user-images.githubusercontent.com/55133871/87429972-81ab6280-c61f-11ea-9679-d6ed564b2dbd.png)
+
+<br>
 <br>
 
 ## ⚡️Server Architecture
@@ -80,7 +83,12 @@
 ## ⚡️Developers
 * [장세영](https://github.com/Say-young) <br>
 * [조충범](https://github.com/cndqjacndqja)<br>
-* [역할분담](https://github.com/TEAMSTORMERS/STORM_Server/projects/1)
+
+<br>
+
+## ⚡️Team Role
+* [칸반보드](https://github.com/TEAMSTORMERS/STORM_Server/projects/1)
+> Git issues를 활용해 칸반보드를 작성했습니다.
 
 <br>
 
