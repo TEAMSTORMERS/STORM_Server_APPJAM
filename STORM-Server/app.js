@@ -22,12 +22,20 @@ app.io.on('connection',(socket) => {
   });
 
     socket.on('roundSetting', (roomCode) => {
-      app.io.to(roomCode).emit('roundcomplete', '잘되나');
+      app.io.to(roomCode).emit('roundComplete', '라운드 정보 추가 완료');
+    });
+
+    socket.on('nextRound', (roomCode) => {
+      app.io.to(roomCode).emit('memberNextRound', '다음 라운드로 넘어갑니다.');
+    });
+
+    socket.on('finishProject', (roomCode) => {
+      app.io.to(roomCode).emit('memberFinishProject', '최종 정리 뷰로 넘어갑니다.');
     });
 
     socket.on('leave', (roomCode) => {
       socket.leave(roomCode, () => {
-        app.io.to(roomCode).emit('leaveProject', "test")
+        app.io.to(roomCode).emit('leaveProject', "test");
       });
     });
 
