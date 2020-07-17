@@ -9,33 +9,51 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.io = require('socket.io')();
 
+let status = [];
 
 app.io.on('connection',(socket) => {
 
   console.log(socket.id + "가 들어왔다.");
 
-  socket.on('joinRoom', (roomCode) => {
+  socket.on('joinRoom', roomCode => {
+
     socket.join(roomCode, () => {
-      console.log(socket.id);
-      app.io.to(roomCode).emit('roomState', socket.id);
+      
+      if(!status.hasOwnProperty(roomCode)){
+        //호스트가 처음으로 들어오면 status를 false로 초기화
+        status[roomCode] = false;
+        console.log(socket.id);
+      }else{
+        //멤버가 들어올 경우 status는 이미 존재하기 때문에 여기로 들어옴
+
+        if(status[roomCode] === true){
+          //호스트가 라운드 설정 완료한 후 멤버가 들어왔을 경우 여기로
+          app.io.to(roomCode).emit('roundComplete');
+        }
+
+        //만약에 true가 아니면 걍 ... 지나감
+        console.log(socket.id);
+      }
     });
   });
 
     socket.on('roundSetting', (roomCode) => {
-      app.io.to(roomCode).emit('roundComplete', '라운드 정보 추가 완료');
+      status[roomCode] = true;
+      app.io.to(roomCode).emit('roundComplete');
     });
-
+    
     socket.on('nextRound', (roomCode) => {
-      app.io.to(roomCode).emit('memberNextRound', '다음 라운드로 넘어갑니다.');
+      status[roomCode] = false;
+      app.io.to(roomCode).emit('memberNextRound');
     });
 
     socket.on('finishProject', (roomCode) => {
-      app.io.to(roomCode).emit('memberFinishProject', '최종 정리 뷰로 넘어갑니다.');
+      app.io.to(roomCode).emit('memberFinishProject', roomCode);
     });
 
     socket.on('leave', (roomCode) => {
       socket.leave(roomCode, () => {
-        app.io.to(roomCode).emit('leaveProject', "test");
+        app.io.to(roomCode).emit('roundComplete');
       });
     });
 
@@ -44,42 +62,6 @@ app.io.on('connection',(socket) => {
     });
 
 });
-
-/*
-app.io.on('connection', (socket) => {
-
-  console.log(socket.id + "가 들어왔다.");
-
-  socket.on('joinRoom', (projectCode) => {
-    const [roomCode, username] = projectCode;
-
-    socket.join(roomCode, () => {
-      app.io.to(roomCode).emit('roomState', `${socket.id}`);
-    });
-
-    socket.on('startProject', (roomCode) => {
-      try {
-        for (i = 0; i <= room[roomCode].userList.length; i++) {
-          app.io.to(room[roomCode].socketId[i]).emit('participantPOST');
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    });
-
-    socket.on('leave', (roomCode) => {
-      socket.leave(roomCode, () => {
-        app.io.to(roomCode).emit('leaveProject', "test")
-      });
-    });
-
-    socket.on('disconnect', () => {
-      console.log(socket.id + '나감.');
-    });
-  });
-});
-*/
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
