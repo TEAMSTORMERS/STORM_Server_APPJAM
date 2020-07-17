@@ -9,10 +9,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 app.io = require('socket.io')();
 
-
-
 let status = []
-
 
 app.io.on('connection',(socket) => {
 
