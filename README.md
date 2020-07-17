@@ -44,12 +44,6 @@
 
 <br>
 
-## ⚡️Menu Tree
-![menuTree](https://user-images.githubusercontent.com/55133871/87768757-97a36800-c857-11ea-89fa-07c37e3815c7.png)
-
-<br>
-<br>
-
 ## ⚡️ER Diagram
 ![erd](https://user-images.githubusercontent.com/55133871/87429972-81ab6280-c61f-11ea-9679-d6ed564b2dbd.png)
 
