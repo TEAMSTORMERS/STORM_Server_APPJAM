@@ -4,7 +4,7 @@
 
 <img src = "https://user-images.githubusercontent.com/55133871/87793832-c41faa00-c880-11ea-96c9-4b85d248149e.png" width = "20%">
 
-![npm_bedge](https://img.shields.io/badge/STORM-STORMER-EC6565)
+![npm_bedge](https://img.shields.io/badge/STORM-STORMERS-EC6565)
 ![node_badge](https://img.shields.io/badge/node-%3E%3D%2012.0.0-F5CA6E)
 ![npm_bedge](https://img.shields.io/badge/npm-v6.12.0-866DC9)
 
@@ -50,7 +50,7 @@
 > 사용자는 본인이 참여했던 프로젝트와 스크랩했던 카드를 메인화면에서 모두 모아볼 수 있습니다.
 
 #### 4.이미지 리사이징
-> AWS Lambda 함수를 활용하여 AWS S3 버킷에 이미지가 저장될 경우 자동으로 해당 이미지를 resizing해 저장합니다.
+> AWS Lambda 함수를 활용하여 AWS S3 버킷에 이미지가 저장될 경우 해당 이미지를 resizing해 저장합니다.
 
 <br>
 <br>
