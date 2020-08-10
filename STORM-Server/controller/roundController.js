@@ -30,7 +30,7 @@ module.exports = {
       }
       const result = await RoundDao.roundSetting(project_idx, round_purpose, round_time);
       console.log(result);
-      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_SETTING_SUCCESS, req.body));
+      res.status(statusCode.OK).send(util.success(statusCode.OK, resMessage.ROUND_SETTING_SUCCESS, result));
     },
 
     roundInfo: async (req, res) => {
