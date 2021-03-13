@@ -65,7 +65,7 @@
 <br>
 
 ## ⚡️Server Architecture
-![architecture](https://user-images.githubusercontent.com/55133871/87429967-807a3580-c61f-11ea-8a58-8c821fe5fb17.png)
+![architecture](https://user-images.githubusercontent.com/55133871/111025459-a0b8f900-8427-11eb-8ccc-675bbea32380.png)
 
 <br>
 
